@@ -1,0 +1,26 @@
+<!--
+  This template loads for the 'tab.friend-detail' state (app.js)
+  'friend' is a $scope variable created in the FriendsCtrl controller (controllers.js)
+  The FriendsCtrl pulls data from the Friends service (service.js)
+  The Friends service returns an array of friend data
+-->
+
+
+<ion-view view-title="签到">
+    <ion-header-bar class="bar-calm">
+        <a class="button icon-left ion-ios-arrow-left button-clear button-dark" nav-direction="back" ui-sref="tab.account"></a>
+        <h1 class="title">签到</h1>
+    </ion-header-bar>
+    <ion-content >
+        <div  class = "checkIn"><img src="img/finger_base.png" >
+            <div class="checkinBase"><img src="img/fingerbackground.png" onclick="checkInFunc()"></div>
+            
+           
+            </div>
+        
+        
+   
+        
+        
+    </ion-content>
+</ion-view>

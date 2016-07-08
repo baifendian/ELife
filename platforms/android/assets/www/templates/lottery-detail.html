@@ -1,0 +1,53 @@
+<!--
+  This template loads for the 'tab.friend-detail' state (app.js)
+  'friend' is a $scope variable created in the FriendsCtrl controller (controllers.js)
+  The FriendsCtrl pulls data from the Friends service (service.js)
+  The Friends service returns an array of friend data
+-->
+
+<ion-view view-title="商品详情" hide-tabs>
+    <ion-header-bar class="bar-calm">
+        <a class="button icon-left ion-ios-arrow-left button-clear button-dark" nav-direction="back" ng-click="backGo()"></a>
+
+        <h1 class="title">商品详情</h1>
+
+    </ion-header-bar>
+    
+    <ion-content>
+	<style> 
+		p{line-height:1rem} 
+	</style>
+        <div class="lottery_detail">
+			<div class="lottery_detail_img">
+				<img ng-src="{{lotteryInfo.small_image}}">
+			</div>
+			<div class="detail">
+				<p><em>{{lotteryInfo.name}}</em></p>
+				<div class="detail_cj">
+					<div class="xb_cj"><p><span>{{lotteryInfo.lucky_draw_credits}}</span><en>  信币</en></p></div>
+					<div class="xb_cj_btn"><p><btn>抽奖</btn></p></div>
+				</div>
+				<div class="detail_js"><p><en>距离结束还有 </en><em>5</em><en> 天</en></p></div>
+				<div class="detail_num"><p><em>{{lotteryInfo.lucky_people_num}} </em><en>人已参加</en></p></div>
+				<div class="detail_canjia"><p><en>您还没有参加抽奖哦~ </en></p></div>	
+			</div>
+			
+			<div class="jianju">
+			</div>
+			<dt>
+			<h3 class="clearfix">
+				<span>活动结束</span>
+			</h3>
+			</dt>
+			<div class="detail_activity">
+				<div class="act_jp"><p><em>活动奖品：</em><en>{{lotteryInfo.name}}</en><en> 1个</en></p></div>
+				<div class="act_time"><p><em>活动时间：</em><en>{{exchangeInfo.time_range}}</en></p></div>
+				<div class="open_time"><p><em>开奖时间：</em><en>2016年7月11日</en></p></div>
+				<div class="act_detail"><p><en>2016年7月11日XXXXXXSSSSSSSS</en></p></div>
+			</div>
+			<div class="btn_cj">
+			<p ng-click="lottery_click()"><btn1>立即抽奖</btn1></p>
+		</div>
+		</div>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,121 @@
+<ion-view view-title="兑换中心">
+    <ion-header-bar class="bar-calm">
+        <h1 class="title">兑换中心</h1>
+    </ion-header-bar>
+    
+  <ion-content>
+    <style> 
+		p{line-height:1rem} 
+	</style>
+	<div class="exchange_banner">
+        <img src="img/intro2.png">
+	</div>
+	<div class="jianju">
+	</div>
+	
+	<div class="ticket">
+		 <img src="img/ticket.png">
+	</div>
+	<div class="jianju">
+	</div>
+	<div class="exchange">
+	<div class="dh_sp">
+		<div class="dh_sp1" ui-sref="exchange-detail" nav-direction="forward" ng-click="dh_click(item1)">
+			<div>
+				<div class="dh_1">
+				<p><em>{{item1.name}}</em></p>
+				<p><en>{{item1.introduction}}</en></p>
+				<p><span>{{item1.credit_exchange}}</span><en>信币</en></p>
+				
+				<p><btn>兑换</btn></p>
+							
+				</div>
+				<div class="dh_pic"> 
+					<img ng-src="{{item1.small_image}}">
+				</div>
+				</div>
+			</div>
+		<div class="dh_sp2" ui-sref="exchange-detail" nav-direction="forward" ng-click="dh_click(item2)">
+			<div class="exchange_sp">
+				<div class="dh">
+					<p><em>{{item2.name}}</em></p>
+					<p><en>{{item2.introduction}}</en></p>          
+				</div>
+				<div class="dbottom">
+				<div class="d1">
+					<p><span>{{item2.credit_exchange}}</span><en>信币</en></p>
+					<p><btn>兑换</btn></p>
+				</div>
+				<div class="dpic"> 
+					<img ng-src="{{item2.small_image}}">
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	
+	<div class="dh_list">
+		<div class="list">
+		 <div class="item" ng-repeat="group in groups" style="padding-top: 0px; padding-bottom: 0px;padding-left: 0px;padding-right: 0px;">
+		
+			<div class="row">
+  <div class="col col-30" ng-repeat = "item in group.items1" ui-sref="exchange-detail" nav-direction="forward" ng-click="dh_click(item)">
+	<div class="exchange_sp">
+		<div class="dh">
+				<p><em> {{item.name}}</em></p>
+				<p><en>{{item.introduction}}</en></p>         
+		</div>
+		<div class="dbottom">
+			<div class="d1">
+				<p><span>{{item.credit_exchange}}</span><en>信币</en></p>
+				<p><btn>兑换</btn></p>
+			</div>
+			<div class="dpic"> 
+				<img ng-src="{{item.small_image}}">
+			</div>
+		</div>
+	</div>
+  </div>
+  <div class="col col-30"  ng-repeat = "item in group.items2" ui-sref="exchange-detail" nav-direction="forward" ng-click="dh_click(item)">
+	<div class="exchange_sp">
+		<div class="dh">
+				<p><em>{{item.name}}</em></p>
+				<p><en>{{item.introduction}}</en></p>          
+		</div>
+		<div class="dbottom">
+			<div class="d1">
+				<p><span>{{item.credit_exchange}}</span><en>信币</en></p>
+				<p><btn>兑换</btn></p>
+			</div>
+		<div class="dpic"> 
+				<img ng-src="{{item.small_image}}">
+		</div>
+		</div>
+	</div>
+  </div>
+  
+  <div class="col col-30"  ng-repeat = "item in group.items3" ui-sref="exchange-detail" nav-direction="forward" ng-click="dh_click(item)">
+	<div class="exchange_sp1">
+		<div class="dh">
+				<p><em>{{item.name}}</em></p>
+				<p><en>{{item.introduction}}</en></p>          
+		</div>
+		<div class="dbottom">
+			<div class="d1">
+				<p><span>{{item.credit_exchange}}</span><en>信币</en></p>
+				<p><btn>兑换</btn></p>
+			</div>
+		<div class="dpic"> 
+				<img ng-src="{{item.small_image}}">
+		</div>
+		</div>
+	</div>
+  </div>
+</div>
+   </div>
+</div>
+	</div>
+	</div>
+	
+  </ion-content>
+</ion-view>

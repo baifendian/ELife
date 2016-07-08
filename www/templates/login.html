@@ -1,0 +1,31 @@
+<ion-modal-view>
+    <ion-header-bar class="bar-calm">
+        <a class="button icon-left ion-ios-arrow-left button-clear button-dark" ng-click="closeLogin()"></a>
+        <h1 class="title">登录</h1>
+    </ion-header-bar>
+    
+    <ion-view style="background-color:#f7f7f7" >
+        <div style="margin:80px auto 15px auto; text-align:center">
+            <img src="img/icon-dd.png"/>
+            <h3>银行E生活</h3>
+        </div>
+        <div class="list padding">
+            <form name="userlogin" ng-submit="doLogin()">
+                <div style="margin:auto 20px auto 20px; background-color:#ffffff" >
+                <label class="item-input padding-left padding-right" style="border-bottom:1px solid #ccc">
+                    <span class="input-label">账号</span>
+                    <input type="text" name="username" ng-model="loginData.username" placeholder="用户名 / 邮箱 / 手机号码">
+                        </label>
+                
+                <label class="item-input padding-left padding-right">
+                    <span class="input-label">密码</span>
+                    <input type="password" name="password" ng-model="loginData.password" placeholder="请输入密码">
+                        </label>
+                </div>
+                <div style="margin:40px 20px auto 20px">
+                    <button class="button button-block button-assertive button-ios-rounded"  type="submit">登录</button>
+                </div>
+            </form>
+        </div>
+    </ion-view>
+</ion-modal-view>

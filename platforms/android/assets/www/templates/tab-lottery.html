@@ -1,0 +1,72 @@
+
+<ion-view view-title="抽奖区">
+    <ion-header-bar class="bar-calm">
+        <h1 class="title">抽奖区</h1>
+    </ion-header-bar>
+    
+  <ion-content>
+   <style> 
+		p{line-height:1rem} 
+	</style>
+<div class="lottery">
+	<dt>
+        <h2 class="clearfix">
+            <span>积分好礼</span>
+        </h2>
+    </dt>
+	<div class="dh_list">
+		<div class="list">
+		 <div class="item" ng-repeat = "group in groups" style="padding-top: 0px;padding-bottom: 0px;padding-left: 0px;padding-right: 0px;">
+		
+	<div class="row">
+  <div class="col col-50" ng-repeat = "item in group.items1" ui-sref="lottery-detail" nav-direction="forward" ng-click="cj_click(item)">
+	<div class="lottery_sp">
+		<div class="cj1">
+				<div class="name"><p><em>{{item.name}}</em></p></div>
+				<div class="dh_btn"><p><btn>抽奖</btn></p></div>
+		</div>
+		<div class="cj_detail"><p><en>{{item.introduction}}</en></p></div>	
+		<div class="cj_bottom">
+			<div class="cj_pic"> 
+				<img ng-src="{{item.small_image}}">
+			</div>
+			<div class="cj_jf">
+				<div class="jf_pic">
+					<img src="img/jf.png">
+				</div>
+				<div class="jf">
+					<p><er>{{item.lucky_draw_credits}}</er></p>
+				</div>
+			</div>
+		</div>        
+	</div>
+  </div>
+  <div class="col col-50" ng-repeat = "item in group.items2" ui-sref="lottery-detail" nav-direction="forward" ng-click="cj_click(item)">
+	<div class="lottery_sp1">
+		<div class="cj1">
+				<div class="name"><p><em>{{item.name}}</em></p></div>
+				<div class="dh_btn"><p><btn>抽奖</btn></p></div>
+		</div>
+		<div class="cj_detail"><p><en>{{item.introduction}}</en></p></div>	
+		<div class="cj_bottom">
+			<div class="cj_pic"> 
+				<img ng-src="{{item.small_image}}">
+			</div>
+			<div class="cj_jf">
+				<div class="jf_pic">
+					<img src="img/jf.png">
+				</div>
+				<div class="jf">
+					<p><er>{{item.lucky_draw_credits}}</er></p>
+				</div>
+			</div>
+		</div>        
+	</div>
+  </div>
+</div>
+  </div>
+</div>
+</div>
+</div>
+  </ion-content>
+</ion-view>
