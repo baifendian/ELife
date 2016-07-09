@@ -216,13 +216,21 @@ angular.module('starter.controllers', [])
             
 })
    
-.controller('ExchangeCtrl', function($scope,$http,$ionicLoading, ApiEndpoint,$http,$ionicLoading, ApiEndpoint,ExchangeInfo) {
+.controller('ExchangeCtrl', function($scope, ApiEndpoint,$http,$ionicLoading, ApiEndpoint,ExchangeInfo) {
 
   
 	$scope.dh_click = function(exchangeInfo) {
 		ExchangeInfo.setExchangeInfo(exchangeInfo); 
 	};
 		$scope.groups = [];
+	 
+	  $ionicLoading.show({
+	    content: 'Loading',
+	    animation: 'fade-in',
+	    showBackdrop: true,
+	    maxWidth: 200,
+	    showDelay: 0
+	  });
 	 
 		var url = ApiEndpoint.url + "/user_manage/get_credit_exchange_goods";
         $http.get(url).success(function (data) {
@@ -269,6 +277,14 @@ angular.module('starter.controllers', [])
   };
 
 	 $scope.groups = [];
+	 
+	   $ionicLoading.show({
+	    content: 'Loading',
+	    animation: 'fade-in',
+	    showBackdrop: true,
+	    maxWidth: 200,
+	    showDelay: 0
+	  });
 	 
 	var url = ApiEndpoint.url + "/user_manage/get_credit_exchange_goods";
     $http.get(url).success(function (data) {
