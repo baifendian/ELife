@@ -356,14 +356,7 @@
 	padding-left:10px;
 	padding-top:0.6rem;
 }
-.ly-plate{
-    position:relative;
-    top: 0;
-    left: 0;
-    width:100%;
-    height:100%;
-    margin: 0px auto;
-}
+
 
 dt{border-bottom:0.1rem solid #dcdcdc;
    padding-bottom:0.433rem;
@@ -632,6 +625,11 @@ dt1 h3{border-left:0.4rem solid #F6AD2D;
 	width:100%;
 	height:100%;
 }
+.ly-plate{
+    background: url(../img/turntable-base.png);
+    background-size:cover;
+    height:100%
+}
 #rotate-base {
     position: active;
     top:0px; left:0px;
@@ -640,29 +638,21 @@ dt1 h3{border-left:0.4rem solid #F6AD2D;
     overflow: auto;
     background-size:cover;
 }
-.rotate-bg{
-    position: active;
-    background-size:cover;
-    width: 275px;
-    height: 275px;
-    background: url(../img/ly-plate.png);
+#rotate-bg{
     position: absolute;
-    top: 230px;
-    left: 3rem;
-    margin-top: 0%;
+    width: 78%;
+    height: 50%;
+    top: 40%;
+    left: 10%;
+    margin-top: 0px;
 }
-.ly-plate div.lottery-star{
-    position: active;
-    width:50%;
-    height:50%;
-    position:absolute;
-    top:305px;
-    left:7.7rem;
-    /*text-indent:-999em;
-     overflow:hidden;
-     background:url(rotate-static.png);
-     -webkit-transform:rotate(0deg);*/
-    outline:none
+#lottery-star{
+    position: absolute;
+    width: 36%;
+    height: 23%;
+    top: 42%;
+    left: 31.3%;
+    margin-top: 20%;
 }
 .ly-plate div.lottery-star #lotteryBtn{
     position: active;
