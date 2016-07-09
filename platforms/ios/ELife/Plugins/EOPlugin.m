@@ -97,6 +97,7 @@
             case LAErrorPasscodeNotSet:
             {
                 NSLog(@"A passcode has not been set");
+                [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
                 break;
             }
             default:
