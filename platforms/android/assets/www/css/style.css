@@ -683,3 +683,102 @@ dt1 h3{border-left:0.4rem solid #F6AD2D;
     color:red;
     margin-top:38%
 }
+.recoder p{
+	font-size:1rem;
+}
+.recoder p em{
+	color: #333333;
+}
+.recoder p en{
+	color: #B2B2B2;
+}
+.recoder p span{
+	color: #F6AD2D;
+}
+.recoder p btn{
+	background-color:#F6AD2D;
+	color: #FFFFFF;
+	padding:0.4rem;
+	text-align:center;
+}
+.recoder{
+	width:100%;
+}
+.jianju1{
+	width:100%;
+	height:0.1rem;
+	float:left;
+	background-color:#E7E7E7; 
+}
+.recoder_wc{
+	float:left;
+	width:25%;
+	height:100%;
+	text-align:center;
+}
+.recoder_time{
+	float:left;
+	width:70%;
+	height:100%;
+	margin-left:0.8rem;
+}
+.recoder_t1{
+	width:100%;
+	float:left;
+	padding-top:0.8rem;
+	padding-left:0.8rem;
+}
+.recoder_t2{
+	width:100%;
+	float:left;
+	padding-top:0.8rem;
+	padding-left:0.8rem;
+}
+.recoder_img{
+	width:20%;
+	float:left;
+}
+.recoder_img img{
+	width:100%;
+	height:100%;
+}
+.recoder_content{
+	float:left;
+	margin-left:0.2rem;
+	width:70%;
+}
+.recoder_content1{
+	width:60%;
+	height:100%;
+	margin-left:0.8rem;
+	float:left;
+}
+.recoder_title{
+	width:100%;
+	height:3rem;
+	float:left;
+}
+.recoder_color{
+	width:100%;
+	float:left;
+	margin-top:0.6rem;
+}
+.recoder_btn{
+	width:100%;
+	float:left;
+}
+.recoder_content2{
+	width:30%;
+	height:100%;
+	margin-left:0.8rem;
+	float:left;
+}
+.recoder_xinbi{
+	width:100%;
+	float:left;
+}
+.recoder_num{
+	margin-top:1.6rem;
+	width:100%;
+	float:left;
+}

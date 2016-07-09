@@ -1,7 +1,7 @@
 angular.module('starter.controllers', [])
 
 .constant('ApiEndpoint', {
-  url: 'http://172.24.3.175:8000'
+  url: 'http://192.168.188.176:8000'
 })
 
 .controller('HomeCtrl', function($scope, $state, $ionicSlideBoxDelegate,$http,$ionicLoading, ApiEndpoint,LotteryInfo,ExchangeInfo) {
@@ -33,6 +33,23 @@ angular.module('starter.controllers', [])
    $scope.dh_click = function(exchangeInfo) {
 	ExchangeInfo.setExchangeInfo(exchangeInfo); 
   };
+  
+  $scope.doRefresh = function() {
+			var url = ApiEndpoint.url + "/user_manage/get_first_page/";
+        $http.get(url).success(function (data) {
+		$scope.$broadcast("scroll.refreshComplete");
+          //业务处理
+		 $scope.cj = data.lucky_draw_goods;
+		 $scope.dh = data.exchange_goods;
+		 
+			$scope.routette_image = data.routette_image;
+			$scope.tital_image = data.tital_image;
+			$scope.setData();
+		}).error(function (error) {
+			$scope.$broadcast("scroll.refreshComplete");
+			alert("failed-----"+error);
+		})
+	};
 
    // Setup the loader
 	  $ionicLoading.show({
@@ -48,27 +65,31 @@ angular.module('starter.controllers', [])
         $http.get(url).success(function (data) {
 		$ionicLoading.hide();
           //业务处理
-		 var cj = data.lucky_draw_goods;
-		 var dh = data.exchange_goods;
+		 $scope.cj = data.lucky_draw_goods;
+		 $scope.dh = data.exchange_goods;
 		 
 		$scope.routette_image = data.routette_image;
 		$scope.tital_image = data.tital_image;
 		
-		$scope.cj_items1 = cj[0];
-		$scope.cj_items2 = cj[1];
-		
-		$scope.dh_items1 = dh[0];
-		$scope.dh_items2 = dh[1];
-		$scope.dh_items3 = dh[2];
-		$scope.dh_items4 = dh[3];
-		$scope.dh_items5 = dh[4];
-		$scope.dh_items6 = dh[5];
+		$scope.setData();
 		
     }).error(function (error) {
 		$ionicLoading.hide();
         //业务处理
         alert("failed-----"+error);
     })
+	
+	$scope.setData = function(){
+		$scope.cj_items1 = $scope.cj[0];
+		$scope.cj_items2 = $scope.cj[1];
+		
+		$scope.dh_items1 = $scope.dh[0];
+		$scope.dh_items2 = $scope.dh[1];
+		$scope.dh_items3 = $scope.dh[2];
+		$scope.dh_items4 = $scope.dh[3];
+		$scope.dh_items5 = $scope.dh[4];
+		$scope.dh_items6 = $scope.dh[5];
+	}
 })
 
 .controller('TurntableCtrl', function($scope, $state, $stateParams, $ionicModal, ApiEndpoint,$ionicLoading, $timeout,$ionicViewSwitcher,$http, $ionicHistory,Userinfo) {
@@ -217,27 +238,64 @@ angular.module('starter.controllers', [])
 })
    
 .controller('ExchangeRecordCtrl', function($scope, $state, $ionicViewSwitcher, $ionicHistory,$http,$ionicLoading, ApiEndpoint, Userinfo) {
+	
+	 $ionicLoading.show({
+	    content: 'Loading',
+	    animation: 'fade-in',
+	    showBackdrop: true,
+	    maxWidth: 200,
+	    showDelay: 0
+	  });
+		
+		var userInfo = Userinfo.get();
+		var dataObj = {username: userInfo.name};
 
-    
+			Object.toparams = function ObjecttoParams(obj){
+				var p = [];
+				for (var key in obj) {
+					p.push(key + '=' + encodeURIComponent(obj[key]));
+				}
+				return p.join('&');
+			};
 
-    $scope.itmes = [
-    { id: 0 },
-    { id: 1 },
-    { id: 2 },
-    { id: 3 },
-    { id: 4 },
-    { id: 5 },
-    { id: 6 },
-    { id: 7 } ];
+			var req = 
+			{
+				method: 'POST',
+				url: ApiEndpoint.url + '/user_manage/get_records/',
+				data: Object.toparams(dataObj),
+				headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+			}
+
+			$http(req).success(function (data) {
+				$ionicLoading.hide();
+				
+				$scope.itmes = data.recordlist;
+			}).error(function (error) {
+				$ionicLoading.hide();
+				alert("failed-----"+error);
+			})	
             
 })
 
 .controller('ExchangeCtrl', function($scope, ApiEndpoint,$http,$ionicLoading, ApiEndpoint,ExchangeInfo) {
-
   
 	$scope.dh_click = function(exchangeInfo) {
 		ExchangeInfo.setExchangeInfo(exchangeInfo); 
 	};
+	
+	$scope.doRefresh = function() {
+			var url = ApiEndpoint.url + "/user_manage/get_credit_exchange_goods";
+			$http.get(url).success(function (data) {
+			$scope.$broadcast("scroll.refreshComplete");
+			
+			$scope.items_old = data.credit_exchange_goods;
+			$scope.setData();
+		}).error(function (error) {
+			$scope.$broadcast("scroll.refreshComplete");
+			alert("failed-----"+error);
+		})
+	};
+	
 		$scope.groups = [];
 	 
 	  $ionicLoading.show({
@@ -254,6 +312,14 @@ angular.module('starter.controllers', [])
         
 		$scope.items_old = data.credit_exchange_goods;
 		
+		$scope.setData();
+		
+    }).error(function (error) {
+		$ionicLoading.hide();
+        alert("failed-----"+error);
+    })
+	
+	$scope.setData = function(){
 		$scope.item1 = $scope.items_old[0];
 		$scope.item2 = $scope.items_old[1];
 		
@@ -279,11 +345,7 @@ angular.module('starter.controllers', [])
 		$scope.groups[i].items2.push($scope.items_old[index2]);
 		$scope.groups[i].items3.push($scope.items_old[index3]);
 		}
-		
-    }).error(function (error) {
-		$ionicLoading.hide();
-        alert("failed-----"+error);
-    })
+	}
 })
 
 .controller('LotteryCtrl', function($scope, $stateParams,$http,$ionicLoading, ApiEndpoint,LotteryInfo) {
@@ -291,47 +353,64 @@ angular.module('starter.controllers', [])
   $scope.cj_click = function(lotteryInfo) {
 	LotteryInfo.setLotteryInfo(lotteryInfo); 
   };
+  
+   $scope.doRefresh = function() {
+		var url = ApiEndpoint.url + "/user_manage/get_credit_exchange_goods";
+		$http.get(url).success(function (data) {
+			$scope.$broadcast("scroll.refreshComplete");
+				
+			$scope.items_old = data.credit_exchange_goods;
+				
+			$scope.setData();	
+		}).error(function (error) {
+			$scope.$broadcast("scroll.refreshComplete");
+			alert("failed-----"+error);
+		})
+	};
 
-	 $scope.groups = [];
+	$scope.groups = [];
 	 
-	   $ionicLoading.show({
+	$ionicLoading.show({
 	    content: 'Loading',
 	    animation: 'fade-in',
 	    showBackdrop: true,
 	    maxWidth: 200,
 	    showDelay: 0
-	  });
+	});
 	 
 	var url = ApiEndpoint.url + "/user_manage/get_credit_exchange_goods";
     $http.get(url).success(function (data) {
-	$ionicLoading.hide();
-        
-	$scope.items_old = data.credit_exchange_goods;
-		
-	var size = 0;
-	 if($scope.items_old.length%2 == 0){
-		 size = $scope.items_old.length/2;
-	 }else{
-		 size = $scope.items_old.length/2 +1;
-	 }
-	 
-  for (var i=0; i< size; i++) {
-    $scope.groups[i] = {
-      row: i,
-      items1: [],
-	  items2: [],
-    };
-	var index1 = i*2 + 0;
-	var index2 = i*2 + 1;
-
-    $scope.groups[i].items1.push($scope.items_old[index1]);
-	$scope.groups[i].items2.push($scope.items_old[index2]);
-  }
-		
+		$ionicLoading.hide();
+			
+		$scope.items_old = data.credit_exchange_goods;
+			
+		$scope.setData();	
     }).error(function (error) {
 		$ionicLoading.hide();
         alert("failed-----"+error);
     })
+	
+	$scope.setData = function(){
+		var size = 0;
+		 if($scope.items_old.length%2 == 0){
+			 size = $scope.items_old.length/2;
+		 }else{
+			 size = $scope.items_old.length/2 +1;
+		 }
+		 
+	for (var i=0; i< size; i++) {
+		$scope.groups[i] = {
+		  row: i,
+		  items1: [],
+		  items2: [],
+		};
+		var index1 = i*2 + 0;
+		var index2 = i*2 + 1;
+
+		$scope.groups[i].items1.push($scope.items_old[index1]);
+		$scope.groups[i].items2.push($scope.items_old[index2]);
+	  }
+	};
 })
 
 .controller('LotteryDetailCtrl', function($scope, $stateParams, $state, $ionicModal, $ionicHistory, $ionicViewSwitcher,$http,$ionicLoading, $timeout, ApiEndpoint,LotteryInfo, Userinfo) {
