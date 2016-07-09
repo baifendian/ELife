@@ -834,8 +834,7 @@ angular.module('starter.controllers', [])
       $ionicLoading.hide();
     }, 1400);
   }; 
-	
-	$scope.callExchange = function(){
+
 		// Setup the loader
 		$ionicLoading.show({
 			content: 'Loading',
@@ -878,7 +877,6 @@ angular.module('starter.controllers', [])
 			$ionicLoading.hide();
 			$scope.modalLogin.show();
 		}
-	}
 })
 
 

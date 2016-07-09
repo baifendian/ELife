@@ -126,8 +126,10 @@ cache:'false',
  controller: 'ExchangeRecordCtrl'
 })
 .state('guess-you-like', {
+	cache:'false',
  url: '/guess-you-like',
  templateUrl: 'templates/guess-you-like.html',
+ controller: 'GuessYouLikeCtrl'
 })
 
 
