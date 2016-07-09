@@ -23,6 +23,9 @@
   <feature name="MyPluginName">
       <param name="ios-package" value="EOPlugin" />
   </feature>
+  <feature name="ELifePlugin">
+      <param name="ios-package" value="EOPlugin" />
+  </feature>
   <platform name="android">
     <icon src="resources/android/icon/drawable-ldpi-icon.png" density="ldpi"/>
     <icon src="resources/android/icon/drawable-mdpi-icon.png" density="mdpi"/>
