@@ -695,9 +695,11 @@ angular.module('starter.controllers', ['ionic'])
 		$scope.callExchange();
 	}
 	
-	$scope.e_add = function(){
+	$scope.ey_add = function(){
+		alert(222222);
 		//e友加油
-		onShare('');
+        var userInfo = Userinfo.get();
+		onShare(ApiEndpoint.url+"/user_manage/friends_invitation/?user="+userInfo.name);
 	}
 	
 	// 登陆
@@ -802,6 +804,8 @@ angular.module('starter.controllers', ['ionic'])
 		if(userInfo.name != undefined){
 			if(userInfo.credits < $scope.exchangeInfo.credit_exchange){
 				$scope.e_add = 0;
+			}else{
+				$scope.e_add = 1;
 			}
 		}
 	
