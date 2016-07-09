@@ -82,21 +82,7 @@ function hidedloseiv() {
 
 
 // 签到
-function checkInFunc(){
-    
-    Cordova.exec(successFunction, failFunction, "MyPluginName", "myMethod", ["回调方法"]);
-}
 
-function successFunction(){
-    showSign()
-}
-function failFunction(){
-    
-}
-
-function showSign(){
-    document.getElementById("textSign").style.display ="block";
-}
 
 //分享
 function onShare(eventData){

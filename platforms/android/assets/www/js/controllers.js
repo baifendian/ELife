@@ -231,8 +231,70 @@ angular.module('starter.controllers', [])
 })
 .controller('SignInCtrl', function($scope, $state, $ionicViewSwitcher, $ionicHistory,$http,$ionicLoading, ApiEndpoint, Userinfo) {
 
-            $scope.click = checkInFunc();
+            $scope.click = checkInFunc(){
+            
+            Cordova.exec(successFunction, failFunction, "MyPluginName", "myMethod", ["回调方法"]);
+            }
+            
+            function successFunction(){
+            showSign()
+            SignIn_click()
+            
+            }
+            function failFunction(){
+            
+            }
+            
+            function showSign(){
+            document.getElementById("textSign").style.display ="block";
+            }
 
+            var SignIn_click = function(){
+                //抽奖
+                $scope.callSignIn();
+            }
+            
+            $scope.callSignIn = function(){
+            
+            var userInfo = Userinfo.get();
+            
+            var dataObj = {username: userInfo.name};
+            
+            Object.toparams = function ObjecttoParams(obj)
+            {
+            var p = [];
+            for (var key in obj)
+            {
+            p.push(key + '=' + encodeURIComponent(obj[key]));
+            }
+            return p.join('&');
+            };
+            
+            var req =
+            {
+            method: 'POST',
+            url: ApiEndpoint.url + '/user_manage/sign_in/',
+            data: Object.toparams(dataObj),
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            }
+            
+            $http(req).
+            success(function(data, status, headers, config) 
+                    {
+                    //success
+                    console.log(data.msg);
+                    alert('qiandao')
+                    
+                    }).
+            error(function(data, status, headers, config) 
+                  {
+                  //error
+                  console.log("failed-----"+error);
+                  $scope.closeLogin();
+                  });
+            
+            };
+            
             
             
 })

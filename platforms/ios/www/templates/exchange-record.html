@@ -1,5 +1,4 @@
 <ion-view view-title="兑奖记录">
-
     <ion-header-bar class="bar-calm" ng-style="{'background-color': '#42a5f5'}">
         <a class="button icon-left ion-ios-arrow-left button-clear button-dark" nav-direction="back" ui-sref="tab.account""></a>
         <h1 class="title">兑奖记录</h1>
@@ -8,9 +7,48 @@
     <ion-content style="background-color:#f0f0f0">
         
         <div class="list">
-		 <div class="item" ng-repeat = "itme in itmes" >
-		 	<p>testteststst</p>
-		 		<img src="img/choujiang1.png">
+		 <div class="item-text-wrap " style=" padding-top:0px;padding-bottom:0px;padding-left:0px;padding-right:0px;" ng-repeat = "itme in itmes">
+		 	<div class="recoder">
+				<div class="recoder_t1">
+					<div class="recoder_wc">
+						<p><em>兑换已完成</em></p>
+					</div>
+					<div class="recoder_time">
+						<p><en>2016-07-01  12:04:43</en></p>
+					</div>
+				</div>
+				<div class="jianju1"></div>
+				<div class="recoder_t2">
+					<div class="recoder_img">
+						<img src="img/intro1.png">
+					</div>
+					<div class="recoder_content">
+						<div class="recoder_content1">
+							<div class="recoder_title">
+								<p><em>FIIL Fiil 头戴式耳机 流光银 IF设计奖 WIFI连接</em></p>
+							</div>
+							<div class="recoder_color">
+								<p><en>颜色分类：银色</en></p>
+							</div>
+							<div class="recoder_btn"  ng-if="flag == 1">
+								<p ng-if=""><btn>抽奖</btn></p>
+							</div>
+							<div class="recoder_btn"  ng-if="flag == 2">
+								<p ng-if=""><btn>兑换</btn></p>
+							</div>
+						</div>
+						<div class="recoder_content2">
+							<div class="recoder_xinbi">
+								<p><span>200</span><em> 信币</em></p>
+							</div>
+							<div class="recoder_num">
+								<p>× 1</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="jianju1"></div>
+			</div>
 
 		 </div>	
 		</div>
