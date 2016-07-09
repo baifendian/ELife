@@ -422,9 +422,9 @@ dt h3{border-left:0.4rem solid #F44336;
 }
 .cj_jf{
 	float:left;
-	margin-left:20%;
+	margin-left:15%;
 	margin-top:3rem;
-	width:35%;
+	width:50%;
 	height:100%;
 	margin-bottom:1rem;
 }
@@ -640,29 +640,32 @@ dt1 h3{border-left:0.4rem solid #F6AD2D;
     overflow: auto;
     background-size:cover;
 }
-#rotate-bg{
+.rotate-bg{
+    position: active;
     background-size:cover;
-    width: 17.2rem;
-    height: 17.2rem;
+    width: 275px;
+    height: 275px;
     background: url(../img/ly-plate.png);
     position: absolute;
-    top: 14.2rem;
-    left: 1.5rem;
+    top: 230px;
+    left: 3rem;
     margin-top: 0%;
 }
-#lottery-star{
-    width:8rem;
-    height:8rem;
+.ly-plate div.lottery-star{
+    position: active;
+    width:50%;
+    height:50%;
     position:absolute;
-    top:19rem;
-    left:26%;
+    top:305px;
+    left:7.7rem;
     /*text-indent:-999em;
      overflow:hidden;
      background:url(rotate-static.png);
      -webkit-transform:rotate(0deg);*/
     outline:none
 }
-#lotteryBtn{
+.ly-plate div.lottery-star #lotteryBtn{
+    position: active;
     cursor: pointer;
     position: absolute;
     top:0;
@@ -817,9 +820,9 @@ dt1 h3{border-left:0.4rem solid #F6AD2D;
 	margin-top:0.6rem;
 }
 .recoder_content2{
-	width:30%;
+	width:25%;
 	height:100%;
-	margin-left:0.8rem;
+	margin-left:0.6rem;
 	float:left;
 }
 .recoder_xinbi{
@@ -832,7 +835,7 @@ dt1 h3{border-left:0.4rem solid #F6AD2D;
 	float:left;
 }
 .guess_you_like p{
-	font-size:0.7rem;
+	font-size:1rem;
 }
 .guess_you_like p em{
 	color: #333333;

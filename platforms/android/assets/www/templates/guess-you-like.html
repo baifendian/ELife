@@ -11,11 +11,11 @@
 		 <div class="item" ng-repeat = "group in groups" style="padding-top: 0px;padding-bottom: 0px;padding-left: 0px;padding-right: 0px;">
 		
 	<div class="row">
-  <div class="col col-50" ng-repeat = "item in group.items1" ui-sref="lottery-detail" nav-direction="forward" ng-click="cj_click(item)">
+  <div class="col col-50" ng-repeat = "item in group.items1" ui-sref="exchange-detail" nav-direction="forward" ng-click="dh_click(item)">
 	<div class="lottery_sp">
-		<div class="cj1">
-				<div class="name"><p><em>{{item.name}}</em></p></div>
-				<div class="dh_btn"><p><btn>兑换</btn></p></div>
+		<div class="lottery_cj1">
+				<div class="lottery_name"><p><em>{{item.name}}</em></p></div>
+				<div class="lottery_cj_btn"><p><btn>兑换</btn></p></div>
 		</div>
 		<div class="cj_detail"><p><en>{{item.introduction}}</en></p></div>	
 		<div class="cj_bottom">
@@ -27,17 +27,17 @@
 					<img src="img/jf.png">
 				</div>
 				<div class="jf">
-					<p><er>{{item.lucky_draw_credits}}</er></p>
+					<p><er>{{item.credit_exchange}}</er></p>
 				</div>
 			</div>
 		</div>        
 	</div>
   </div>
-  <div class="col col-50" ng-repeat = "item in group.items2" ui-sref="lottery-detail" nav-direction="forward" ng-click="cj_click(item)">
+  <div class="col col-50" ng-repeat = "item in group.items2" ui-sref="exchange-detail" nav-direction="forward" ng-click="dh_click(item)">
 	<div class="lottery_sp1">
-		<div class="cj1">
-				<div class="name"><p><em>{{item.name}}</em></p></div>
-				<div class="dh_btn"><p><btn>兑换</btn></p></div>
+		<div class="lottery_cj1">
+				<div class="lottery_name"><p><em>{{item.name}}</em></p></div>
+				<div class="lottery_cj_btn"><p><btn>兑换</btn></p></div>
 		</div>
 		<div class="cj_detail"><p><en>{{item.introduction}}</en></p></div>	
 		<div class="cj_bottom">
@@ -49,7 +49,7 @@
 					<img src="img/jf.png">
 				</div>
 				<div class="jf">
-					<p><er>{{item.lucky_draw_credits}}</er></p>
+					<p><er>{{item.credit_exchange}}</er></p>
 				</div>
 			</div>
 		</div>        

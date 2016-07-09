@@ -226,7 +226,7 @@ angular.module('starter.controllers', ['ionic'])
             
             $http(req).success(function (data) {
                                $ionicLoading.hide();
-                               alert('123');
+                               
                                console.log(data)
                                if(data.code == 503)
                                {
@@ -875,6 +875,10 @@ angular.module('starter.controllers', ['ionic'])
         $ionicViewSwitcher.nextDirection('back'); // 'forward', 'back', etc.
         $ionicHistory.goBack();
     };
+	
+	$scope.dh_click = function(exchangeInfo) {
+		ExchangeInfo.setExchangeInfo(exchangeInfo); 
+	};
 	
 	// 登陆
   $ionicModal.fromTemplateUrl('templates/login.html', {
