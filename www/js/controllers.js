@@ -489,7 +489,7 @@ angular.module('starter.controllers', [])
 	
 	$scope.e_add = function(){
 		//e友加油
-		
+		onShare('');
 	}
 	
 	// 登陆
