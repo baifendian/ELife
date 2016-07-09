@@ -1,9 +1,10 @@
 <ion-view view-title="兑换中心">
-    <ion-header-bar class="bar-calm">
+    <ion-header-bar class="bar-calm" ng-style="{'background-color': '#42a5f5'}">
         <h1 class="title">兑换中心</h1>
     </ion-header-bar>
     
   <ion-content>
+  <ion-refresher pulling-text="下拉刷新" on-refresh="doRefresh()"></ion-refresher>
     <style> 
 		p{line-height:1rem} 
 	</style>
