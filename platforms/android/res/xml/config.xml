@@ -19,10 +19,6 @@
         <param name="android-package" value="io.ionic.keyboard.IonicKeyboard" />
         <param name="onload" value="true" />
     </feature>
-    <feature name="ELifePlugin">
-        <param name="android-package" value="com.elife.plugin.ELifePlugin" />
-        <param name="onload" value="true" />
-    </feature>
     <name>ELife</name>
     <description>
         An Ionic Framework and Cordova project.

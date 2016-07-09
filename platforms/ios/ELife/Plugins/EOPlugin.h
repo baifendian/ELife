@@ -8,4 +8,6 @@
 @interface EOPlugin : CDVPlugin
 
 - (void)myMethod:(CDVInvokedUrlCommand*)command;
+
+- (void)share:(CDVInvokedUrlCommand*)command;
 @end
