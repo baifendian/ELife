@@ -87,7 +87,7 @@ function checkInFunc(){
     Cordova.exec(successFunction, failFunction, "MyPluginName", "myMethod", ["回调方法"]);
 }
 function onShare(eventData){
-	Cordova.exec( successFunction, failFunction ,  "ELifePlugin" ,  "share" , [eventData]);
+	Cordova.exec( null, null ,  "ELifePlugin" ,  "share" , [eventData]);
 }
 function successFunction(){
     showSign()
