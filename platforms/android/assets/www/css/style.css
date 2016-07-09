@@ -603,7 +603,12 @@ dt1 h3{border-left:0.4rem solid #F6AD2D;
 }
 .exchange_eadd{
 	width:20%;
+	height:4rem;
 	float:left;
+}
+.exchange_eadd img{
+	width:100%;
+	height:100%;
 }
 .rotate-base{
     position: absolute;
