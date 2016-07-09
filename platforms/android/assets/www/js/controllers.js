@@ -232,7 +232,7 @@ angular.module('starter.controllers', ['ionic'])
                                {
                                 $scope.showMsg('您的信币不够啦！')
                                }else{
-                                clickFunc(3);
+                                clickFunc(data.prizelevel);
                                }
                                
                                }).error(function (error) {
@@ -698,7 +698,7 @@ angular.module('starter.controllers', ['ionic'])
 	}
 	
 	$scope.ey_add = function(){
-		alert(222222);
+
 		//e友加油
         var userInfo = Userinfo.get();
 		onShare(ApiEndpoint.url+"/user_manage/friends_invitation/?user="+userInfo.name);
