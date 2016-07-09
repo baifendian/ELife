@@ -303,8 +303,7 @@ angular.module('starter.controllers', ['ionic'])
                     }).
             error(function(data, status, headers, config)
                   {
-                  //error
-                  console.log("failed-----"+error);
+                  
                   $scope.closeLogin();
                   });
             
@@ -639,7 +638,7 @@ angular.module('starter.controllers', ['ionic'])
 		var userInfo = Userinfo.get();
 		
 		if(userInfo.name != undefined){
-			if(userInfo.credits < $scope.lotteryInfo.credit_exchange){
+			if(userInfo.credits < $scope.lotteryInfo.lucky_draw_credits){
 				$scope.showMsg("信币不足");
 			}else{
 				var dataObj = {username: userInfo.name,
@@ -664,12 +663,15 @@ angular.module('starter.controllers', ['ionic'])
 			$http(req).success(function (data) {
 				$ionicLoading.hide();
 				if(data.code == 0){
-					Userinfo.set(data.user);
-					$scope.showMsg("恭喜您中奖了");
+					if(data.lucky == 1){
+						Userinfo.set(data.user);
+						$scope.showMsg("恭喜您中奖了");
+					}else if(data.lucky == 0){
+						$scope.showMsg("真遗憾，您未中奖");
+					}
 				}else{
-					$scope.showMsg("真遗憾，您未中奖");
+					alert("请求失败，请重试");
 				}
-				
 			}).error(function (error) {
 				$ionicLoading.hide();
 				alert("请求失败，请重试");
