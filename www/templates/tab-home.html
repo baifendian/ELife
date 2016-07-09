@@ -36,9 +36,11 @@
       
 		<div class="choujiang" ui-sref="lottery-detail" nav-direction="forward" ng-click="cj_click(cj_items1)">
 			<div class="pri">
-              <p><em>{{cj_items1.name}}</em></p>
+              <div class="home_title">
+					<p><em>{{cj_items1.name}}</em></p>
+			  </div>
 			  <p><en>{{cj_items1.introduction}}</en></p>
-              <p><span>{{cj_items1.credit_exchange}}</span><en>信币</en></p>
+              <p><span>{{cj_items1.lucky_draw_credits}}</span><en>信币</en></p>
 			  <p><btn>抽奖</btn></p>
 			</div>
 			<div class="pic"> 
@@ -48,9 +50,11 @@
         
         <div class="choujiang" ui-sref="lottery-detail" nav-direction="forward" ng-click="cj_click(cj_items2)">
 			<div class="pri">
-				<p><em>{{cj_items2.name}}</em></p>
+				<div class="home_title">
+					<p><em>{{cj_items2.name}}</em></p>
+				</div>
 				<p><en>{{cj_items2.introduction}}</en></p>
-				<p><span>{{cj_items2.credit_exchange}}</span><en>信币</en></p>
+				<p><span>{{cj_items2.lucky_draw_credits}}</span><en>信币</en></p>
 				<p><btn>抽奖</btn></p>
                         
 			</div>

@@ -620,6 +620,9 @@ angular.module('starter.controllers', ['ionic'])
     $timeout(function() {
       // $scope.popover.hide();
       $ionicLoading.hide();
+	   if(txt == "恭喜您中奖了"){
+		 $scope.backGo();
+	  }
     }, 1400);
   };     
 	
@@ -634,8 +637,9 @@ angular.module('starter.controllers', ['ionic'])
 		});
 		
 		var userInfo = Userinfo.get();
+		
 		if(userInfo.name != undefined){
-			if(userInfo.credits < $scope.exchangeInfo.credit_exchange){
+			if(userInfo.credits < $scope.lotteryInfo.credit_exchange){
 				$scope.showMsg("信币不足");
 			}else{
 				var dataObj = {username: userInfo.name,
@@ -659,9 +663,13 @@ angular.module('starter.controllers', ['ionic'])
 
 			$http(req).success(function (data) {
 				$ionicLoading.hide();
+				if(data.code == 0){
+					Userinfo.set(data.user);
+					$scope.showMsg("恭喜您中奖了");
+				}else{
+					$scope.showMsg("真遗憾，您未中奖");
+				}
 				
-				$scope.showMsg("恭喜您中奖了");
-				Userinfo.set(data.user);
 			}).error(function (error) {
 				$ionicLoading.hide();
 				alert("请求失败，请重试");
@@ -785,8 +793,19 @@ angular.module('starter.controllers', ['ionic'])
     $timeout(function() {
       // $scope.popover.hide();
       $ionicLoading.hide();
+	  if(txt == "恭喜您兑换成功"){
+		 $scope.backGo();
+	  }
     }, 1400);
   }; 
+	
+		var userInfo = Userinfo.get();
+		if(userInfo.name != undefined){
+			if(userInfo.credits < $scope.exchangeInfo.credit_exchange){
+				$scope.e_add = 0;
+			}
+		}
+	
 	
 	$scope.callExchange = function(){
 		// Setup the loader
@@ -801,8 +820,10 @@ angular.module('starter.controllers', ['ionic'])
 		var userInfo = Userinfo.get();
 		if(userInfo.name != undefined){
 			if(userInfo.credits < $scope.exchangeInfo.credit_exchange){
+				$scope.e_add = 0;
 				$scope.showMsg("信币不足");
 			}else{
+				$scope.e_add = 1;
 				var dataObj = {username: userInfo.name,
 				goodsid: $scope.exchangeInfo.goodsid};
 
@@ -824,8 +845,13 @@ angular.module('starter.controllers', ['ionic'])
 
 			$http(req).success(function (data) {
 				$ionicLoading.hide();
-			$scope.showMsg("恭喜您兑换成功");
-				Userinfo.set(data.user);
+				if(data.code == 0){
+					Userinfo.set(data.user);
+					$scope.showMsg("恭喜您兑换成功");
+				}else{
+					$scope.showMsg("兑换失败");
+				}
+				
 			}).error(function (error) {
 				$ionicLoading.hide();
 				alert("请求失败，请重试");
@@ -939,8 +965,8 @@ angular.module('starter.controllers', ['ionic'])
       $ionicLoading.hide();
     }, 1400);
   }; 
-	
-	$scope.callExchange = function(){
+
+	$scope.groups = [];
 		// Setup the loader
 		$ionicLoading.show({
 			content: 'Loading',
@@ -952,8 +978,7 @@ angular.module('starter.controllers', ['ionic'])
   
 		var userInfo = Userinfo.get();
 		if(userInfo.name != undefined){
-			var dataObj = {username: userInfo.name,
-				goodsid: $scope.exchangeInfo.goodsid};
+			var dataObj = {username: userInfo.name};
 
 			Object.toparams = function ObjecttoParams(obj){
 				var p = [];
@@ -966,15 +991,18 @@ angular.module('starter.controllers', ['ionic'])
 			var req = 
 			{
 				method: 'POST',
-				url: ApiEndpoint.url + '/user_manage/credit_exchange/',
+				url: ApiEndpoint.url + '/user_manage/get_like_goods/',
 				data: Object.toparams(dataObj),
 				headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 			}
 
 			$http(req).success(function (data) {
 				$ionicLoading.hide();
-				$scope.showMsg("恭喜您兑换成功");
-				Userinfo.set(data.user);
+				
+				$scope.items_old = data.like_goods;
+				$scope.setData();
+				
+			//	Userinfo.set(data.user);
 			}).error(function (error) {
 				$ionicLoading.hide();
 				alert("请求失败，请重试");
@@ -983,7 +1011,28 @@ angular.module('starter.controllers', ['ionic'])
 			$ionicLoading.hide();
 			$scope.modalLogin.show();
 		}
-	}
+		
+		$scope.setData = function(){
+		var size = 0;
+		 if($scope.items_old.length%2 == 0){
+			 size = $scope.items_old.length/2;
+		 }else{
+			 size = $scope.items_old.length/2 +1;
+		 }
+		 
+	for (var i=0; i< size; i++) {
+		$scope.groups[i] = {
+		  row: i,
+		  items1: [],
+		  items2: [],
+		};
+		var index1 = i*2 + 0;
+		var index2 = i*2 + 1;
+
+		$scope.groups[i].items1.push($scope.items_old[index1]);
+		$scope.groups[i].items2.push($scope.items_old[index2]);
+	  }
+	};
 })
 
 

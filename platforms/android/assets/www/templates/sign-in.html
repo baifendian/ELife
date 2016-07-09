@@ -12,13 +12,12 @@
         <h1 class="title">签到</h1>
     </ion-header-bar>
     <ion-content >
-        <div  ><img src="img/finger_base.png" id = "checkIn">
+        <div  class = "fingerBase">
             
-            
-            <div><img src="img/fingerbackground.png"  id="checkinBase" onclick="checkInFunc()"></div>
+            <div><img src="img/fingerbackground.png"  id="checkinBase" ng-click="checkin()"></div>
             <div ><img src="img/success.png" id = "successSign"></div>
-            <p id = "textSign" align="center">积分+50</p>
-
+            <p id = "textSign" align="center" ng-if="flag == 1">积分+50</p>
+            
         </div>
         
   

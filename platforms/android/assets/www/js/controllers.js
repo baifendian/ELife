@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('starter.controllers', ['ionic'])
 
 .constant('ApiEndpoint', {
   url: 'http://192.168.188.176:8000'
@@ -94,6 +94,16 @@ angular.module('starter.controllers', [])
 
 .controller('TurntableCtrl', function($scope, $state, $stateParams, $ionicModal, ApiEndpoint,$ionicLoading, $timeout,$ionicViewSwitcher,$http, $ionicHistory,Userinfo) {
 
+            $scope.showMsg = function(txt) {
+            $ionicLoading.show({
+                               template: txt
+                               });
+            $timeout(function() {
+                     // $scope.popover.hide();
+                     $ionicLoading.hide();
+                     }, 1400);
+            };
+            
             $scope.Turntable_click = function(){
             //转盘
             $scope.callTurntable();
@@ -185,6 +195,7 @@ angular.module('starter.controllers', [])
 			
             $scope.callTurntable = function(){
             // Setup the loader
+           
             $ionicLoading.show({
                                content: 'Loading',
                                animation: 'fade-in',
@@ -215,9 +226,14 @@ angular.module('starter.controllers', [])
             
             $http(req).success(function (data) {
                                $ionicLoading.hide();
-                               
+                               alert('123');
                                console.log(data)
-                               clickFunc(0);
+                               if(data.code == 503)
+                               {
+                                $scope.showMsg('您的信币不够啦！')
+                               }else{
+                                clickFunc(3);
+                               }
                                
                                }).error(function (error) {
                                         $ionicLoading.hide();
@@ -229,32 +245,29 @@ angular.module('starter.controllers', [])
             }
             }
 })
-.controller('SignInCtrl', function($scope, $state, $ionicViewSwitcher, $ionicHistory,$http,$ionicLoading, ApiEndpoint, Userinfo) {
+.controller('SignInCtrl', function($scope, $state, $ionicViewSwitcher, $ionicHistory,$http,$ionicLoading, ApiEndpoint, Userinfo,$timeout,$rootScope) {
 
-            $scope.click = checkInFunc(){
+            $scope.showMsg = function(txt) {
+            $ionicLoading.show({
+                               template: txt
+                               });
+            $timeout(function() {
+                     // $scope.popover.hide();
+                     $ionicLoading.hide();
+                     }, 1400);
+            };
             
-            Cordova.exec(successFunction, failFunction, "MyPluginName", "myMethod", ["回调方法"]);
-            }
+            var isIOS = ionic.Platform.isIOS();
+            var successss = function successFunction(){
             
-            function successFunction(){
-            showSign()
             SignIn_click()
             
             }
-            function failFunction(){
+            var faillll =  function failFunction(){
             
             }
-            
-            function showSign(){
-            document.getElementById("textSign").style.display ="block";
-            }
-
-            var SignIn_click = function(){
-                //抽奖
-                $scope.callSignIn();
-            }
-            
             $scope.callSignIn = function(){
+            
             
             var userInfo = Userinfo.get();
             
@@ -279,14 +292,16 @@ angular.module('starter.controllers', [])
             }
             
             $http(req).
-            success(function(data, status, headers, config) 
+            success(function(data, status, headers, config)
                     {
                     //success
                     console.log(data.msg);
-                    alert('qiandao')
+                    $scope.flag = 1;
+                    $scope.showMsg('签到成功');
+                    $rootScope.flagSign = 'flagDone'
                     
                     }).
-            error(function(data, status, headers, config) 
+            error(function(data, status, headers, config)
                   {
                   //error
                   console.log("failed-----"+error);
@@ -295,6 +310,33 @@ angular.module('starter.controllers', [])
             
             };
             
+            
+            $scope.checkin = function checkInFunc(){
+            
+
+            if($rootScope.flagSign != 'flagDone'){
+                if(isIOS){
+                Cordova.exec(successss, faillll, "MyPluginName", "myMethod", ["回调方法"]);
+                }else
+                {
+            
+                SignIn_click()
+                }
+            
+            }else
+            {
+                $scope.showMsg('您今天签过啦！')
+            }
+            
+            }
+            var showuu =  function showSign(){
+            document.getElementById("textSign").style.display ="block";
+            }
+            
+            var SignIn_click = function(){
+            //签到
+            $scope.callSignIn();
+            }
             
             
 })
@@ -578,6 +620,9 @@ angular.module('starter.controllers', [])
     $timeout(function() {
       // $scope.popover.hide();
       $ionicLoading.hide();
+	   if(txt == "恭喜您中奖了"){
+		 $scope.backGo();
+	  }
     }, 1400);
   };     
 	
@@ -592,8 +637,9 @@ angular.module('starter.controllers', [])
 		});
 		
 		var userInfo = Userinfo.get();
+		
 		if(userInfo.name != undefined){
-			if(userInfo.credits < $scope.exchangeInfo.credit_exchange){
+			if(userInfo.credits < $scope.lotteryInfo.credit_exchange){
 				$scope.showMsg("信币不足");
 			}else{
 				var dataObj = {username: userInfo.name,
@@ -617,9 +663,13 @@ angular.module('starter.controllers', [])
 
 			$http(req).success(function (data) {
 				$ionicLoading.hide();
+				if(data.code == 0){
+					Userinfo.set(data.user);
+					$scope.showMsg("恭喜您中奖了");
+				}else{
+					$scope.showMsg("真遗憾，您未中奖");
+				}
 				
-				$scope.showMsg("恭喜您中奖了");
-				Userinfo.set(data.user);
 			}).error(function (error) {
 				$ionicLoading.hide();
 				alert("请求失败，请重试");
@@ -742,8 +792,19 @@ angular.module('starter.controllers', [])
     $timeout(function() {
       // $scope.popover.hide();
       $ionicLoading.hide();
+	  if(txt == "恭喜您兑换成功"){
+		 $scope.backGo();
+	  }
     }, 1400);
   }; 
+	
+		var userInfo = Userinfo.get();
+		if(userInfo.name != undefined){
+			if(userInfo.credits < $scope.exchangeInfo.credit_exchange){
+				$scope.e_add = 0;
+			}
+		}
+	
 	
 	$scope.callExchange = function(){
 		// Setup the loader
@@ -758,8 +819,10 @@ angular.module('starter.controllers', [])
 		var userInfo = Userinfo.get();
 		if(userInfo.name != undefined){
 			if(userInfo.credits < $scope.exchangeInfo.credit_exchange){
+				$scope.e_add = 0;
 				$scope.showMsg("信币不足");
 			}else{
+				$scope.e_add = 1;
 				var dataObj = {username: userInfo.name,
 				goodsid: $scope.exchangeInfo.goodsid};
 
@@ -781,8 +844,13 @@ angular.module('starter.controllers', [])
 
 			$http(req).success(function (data) {
 				$ionicLoading.hide();
-			$scope.showMsg("恭喜您兑换成功");
-				Userinfo.set(data.user);
+				if(data.code == 0){
+					Userinfo.set(data.user);
+					$scope.showMsg("恭喜您兑换成功");
+				}else{
+					$scope.showMsg("兑换失败");
+				}
+				
 			}).error(function (error) {
 				$ionicLoading.hide();
 				alert("请求失败，请重试");
@@ -795,6 +863,177 @@ angular.module('starter.controllers', [])
 		}
 	}
 })
+
+.controller('GuessYouLikeCtrl', function($scope, $stateParams, $state, $ionicModal, $ionicHistory, $ionicViewSwitcher,$http,$ionicLoading, $timeout, ApiEndpoint,ExchangeInfo, Userinfo) {
+    $scope.backGo = function() { 
+        $ionicViewSwitcher.nextDirection('back'); // 'forward', 'back', etc.
+        $ionicHistory.goBack();
+    };
+	
+	// 登陆
+  $ionicModal.fromTemplateUrl('templates/login.html', {
+    scope: $scope
+  }).then(function(modal) {
+    $scope.modalLogin = modal;
+    $scope.loginData = {};
+  });
+
+  // Triggered in the login modal to close it
+  $scope.closeLogin = function() {
+    $scope.modalLogin.hide();
+    $scope.loginData = {};
+  };
+
+
+  $scope.showMsg = function(txt) {
+    $ionicLoading.show({
+      template: txt
+    });
+    $timeout(function() {
+      // $scope.popover.hide();
+      $ionicLoading.hide();
+    }, 1400);
+  };          
+            
+  $scope.doLogin = function() {
+    if (!$scope.loginData.username) {
+      $scope.showMsg('用户名不能为空');
+      return false;
+    };
+    if (!$scope.loginData.password) {
+      $scope.showMsg('密码不能为空');
+      return false;
+    };
+    $ionicLoading.show({
+      template: "正在登录..."
+    });
+
+    var dataObj = {username: $scope.loginData.username,
+      password: md5($scope.loginData.password)};
+
+    Object.toparams = function ObjecttoParams(obj) 
+    {
+      var p = [];
+      for (var key in obj) 
+      {
+        p.push(key + '=' + encodeURIComponent(obj[key]));
+      }
+      return p.join('&');
+    };
+
+    var req = 
+    {
+        method: 'POST',
+        url: ApiEndpoint.url + '/user_manage/login/',
+        data: Object.toparams(dataObj),
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+    }
+
+    $http(req).
+    success(function(data, status, headers, config) 
+    {
+        //success
+        $ionicLoading.hide();
+        console.log(data.msg);     
+        if(data.code == '0'){
+          $scope.modalLogin.hide();  
+          Userinfo.set(data.user);
+          $scope.userInfo = data.user;
+          $scope.flag = 1;
+        }else {
+          $scope.showMsg(data.msg);
+        }       
+
+    }).
+    error(function(data, status, headers, config) 
+    {
+        //error
+        console.log("请求失败，请重试");
+        $scope.closeLogin();
+    });
+
+  };
+	
+	  
+  $scope.showMsg = function(txt) {
+    $ionicLoading.show({
+      template: txt
+    });
+    $timeout(function() {
+      // $scope.popover.hide();
+      $ionicLoading.hide();
+    }, 1400);
+  }; 
+
+	$scope.groups = [];
+		// Setup the loader
+		$ionicLoading.show({
+			content: 'Loading',
+			animation: 'fade-in',
+			showBackdrop: true,
+			maxWidth: 200,
+			showDelay: 0
+		});
+  
+		var userInfo = Userinfo.get();
+		if(userInfo.name != undefined){
+			var dataObj = {username: userInfo.name};
+
+			Object.toparams = function ObjecttoParams(obj){
+				var p = [];
+				for (var key in obj) {
+					p.push(key + '=' + encodeURIComponent(obj[key]));
+				}
+				return p.join('&');
+			};
+
+			var req = 
+			{
+				method: 'POST',
+				url: ApiEndpoint.url + '/user_manage/get_like_goods/',
+				data: Object.toparams(dataObj),
+				headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+			}
+
+			$http(req).success(function (data) {
+				$ionicLoading.hide();
+				
+				$scope.items_old = data.like_goods;
+				$scope.setData();
+				
+			//	Userinfo.set(data.user);
+			}).error(function (error) {
+				$ionicLoading.hide();
+				alert("请求失败，请重试");
+			})
+		}else{
+			$ionicLoading.hide();
+			$scope.modalLogin.show();
+		}
+		
+		$scope.setData = function(){
+		var size = 0;
+		 if($scope.items_old.length%2 == 0){
+			 size = $scope.items_old.length/2;
+		 }else{
+			 size = $scope.items_old.length/2 +1;
+		 }
+		 
+	for (var i=0; i< size; i++) {
+		$scope.groups[i] = {
+		  row: i,
+		  items1: [],
+		  items2: [],
+		};
+		var index1 = i*2 + 0;
+		var index2 = i*2 + 1;
+
+		$scope.groups[i].items1.push($scope.items_old[index1]);
+		$scope.groups[i].items2.push($scope.items_old[index2]);
+	  }
+	};
+})
+
 
 .controller('AccountCtrl', function($ionicViewSwitcher, $state, $scope, $ionicModal, $http, ApiEndpoint, $ionicLoading, $ionicPopover, $timeout, Userinfo) {
 	var userInfo = Userinfo.get();
@@ -947,6 +1186,9 @@ angular.module('starter.controllers', [])
         case 2:
           $state.go('exchange-record');
           break;
+		case 3:
+          $state.go('guess-you-like');
+          break;  
         default:
           break;
       }

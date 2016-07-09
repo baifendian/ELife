@@ -206,6 +206,11 @@
 	padding:0.4rem;
 	text-align:center;
 }
+.home_title{
+	width:100%;
+	height:1rem;
+	white-space:nowrap;
+}
 .choujiang{
 	width:60%;
 	height:50%;
@@ -230,8 +235,9 @@
 	padding-top:0px;
 	padding-left:0px;
 	padding-right:0px;
-	height:10rem;
+	height:8.6rem;
 }
+
 .col p{
 	font-size:0.6rem;
 }
@@ -384,10 +390,22 @@ dt h3{border-left:0.4rem solid #F44336;
 	margin-left:1rem;
 	float:left;
 }
+.lottery_cj1{
+	width:100%;
+}
+.lottery_name{
+	width:60%;
+	float:left;
+}
+.lottery_cj_btn{
+	width:40%;
+	float:left;
+	padding-left:0.6rem;
+}
 .cj_detail{
 	float:left;
 	width:100%;
-	margin-top:0.6rem;
+	margin-top:0.4rem;
 }
 .cj_bottom{
 	float:left;
@@ -396,8 +414,7 @@ dt h3{border-left:0.4rem solid #F44336;
 }
 .cj_pic{
 	float:left;
-	width:65%;
-	height:7rem;
+	width:35%;
 }
 .cj_pic img{
 	width:100%;
@@ -405,7 +422,8 @@ dt h3{border-left:0.4rem solid #F44336;
 }
 .cj_jf{
 	float:left;
-	margin-top:5rem;
+	margin-left:20%;
+	margin-top:3rem;
 	width:35%;
 	height:100%;
 	margin-bottom:1rem;
@@ -445,16 +463,16 @@ dt h3{border-left:0.4rem solid #F44336;
 }
 .lottery_sp{
 	width:100%;
-	height:12.88rem;
-	padding-top:0.6rem;
-	padding-left:0.6rem;
+	height:10.88rem;
+	padding-top:0.8rem;
+	padding-left:0.8rem;
 	border-right: 1px solid #CCCCCC;
 }
 .lottery_sp1{
 	width:100%;
-	height:12.88rem;
-	padding-top:0.6rem;
-	padding-left:0.6rem;
+	height:10.88rem;
+	padding-top:0.8rem;
+	padding-left:0.8rem;
 }
 .lottery_detail_img{
 	width:100%;
@@ -812,4 +830,22 @@ dt1 h3{border-left:0.4rem solid #F6AD2D;
 	margin-top:1.6rem;
 	width:100%;
 	float:left;
+}
+.guess_you_like p{
+	font-size:0.7rem;
+}
+.guess_you_like p em{
+	color: #333333;
+}
+.guess_you_like p en{
+	color: #B2B2B2;
+}
+.guess_you_like p span{
+	color: #F55044;
+}
+.guess_you_like p btn{
+	background-color:#F55044;
+	color: #FFFFFF;
+	padding:0.4rem;
+	text-align:center;
 }
