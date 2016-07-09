@@ -47,7 +47,7 @@ angular.module('starter.controllers', ['ionic'])
 			$scope.setData();
 		}).error(function (error) {
 			$scope.$broadcast("scroll.refreshComplete");
-			alert("failed-----"+error);
+			alert("请求失败，请重试");
 		})
 	};
 
@@ -76,7 +76,7 @@ angular.module('starter.controllers', ['ionic'])
     }).error(function (error) {
 		$ionicLoading.hide();
         //业务处理
-        alert("failed-----"+error);
+        alert("请求失败，请重试");
     })
 	
 	$scope.setData = function(){
@@ -177,7 +177,7 @@ angular.module('starter.controllers', ['ionic'])
     error(function(data, status, headers, config) 
     {
         //error
-        console.log("failed-----"+error);
+        console.log("请求失败，请重试");
         $scope.closeLogin();
     });
 
@@ -221,7 +221,7 @@ angular.module('starter.controllers', ['ionic'])
                                
                                }).error(function (error) {
                                         $ionicLoading.hide();
-                                        alert("failed-----"+error);
+                                        alert("请求失败，请重试");
                                         })
             }else{
             $ionicLoading.hide();
@@ -361,7 +361,7 @@ angular.module('starter.controllers', ['ionic'])
 				$scope.itmes = data.recordlist;
 			}).error(function (error) {
 				$ionicLoading.hide();
-				alert("failed-----"+error);
+				alert("请求失败，请重试");
 			})	
             
 })
@@ -381,7 +381,7 @@ angular.module('starter.controllers', ['ionic'])
 			$scope.setData();
 		}).error(function (error) {
 			$scope.$broadcast("scroll.refreshComplete");
-			alert("failed-----"+error);
+			alert("请求失败，请重试");
 		})
 	};
 	
@@ -405,7 +405,7 @@ angular.module('starter.controllers', ['ionic'])
 		
     }).error(function (error) {
 		$ionicLoading.hide();
-        alert("failed-----"+error);
+        alert("请求失败，请重试");
     })
 	
 	$scope.setData = function(){
@@ -453,7 +453,7 @@ angular.module('starter.controllers', ['ionic'])
 			$scope.setData();	
 		}).error(function (error) {
 			$scope.$broadcast("scroll.refreshComplete");
-			alert("failed-----"+error);
+			alert("请求失败，请重试");
 		})
 	};
 
@@ -476,7 +476,7 @@ angular.module('starter.controllers', ['ionic'])
 		$scope.setData();	
     }).error(function (error) {
 		$ionicLoading.hide();
-        alert("failed-----"+error);
+        alert("请求失败，请重试");
     })
 	
 	$scope.setData = function(){
@@ -592,7 +592,7 @@ angular.module('starter.controllers', ['ionic'])
     error(function(data, status, headers, config) 
     {
         //error
-        console.log("failed-----"+error);
+        console.log("请求失败，请重试");
         $scope.closeLogin();
     });
 
@@ -646,9 +646,10 @@ angular.module('starter.controllers', ['ionic'])
 				$ionicLoading.hide();
 				
 				$scope.showMsg("恭喜您中奖了");
+				Userinfo.set(data.user);
 			}).error(function (error) {
 				$ionicLoading.hide();
-				alert("failed-----"+error);
+				alert("请求失败，请重试");
 			})
 			}
 		}else{
@@ -754,7 +755,7 @@ angular.module('starter.controllers', ['ionic'])
     error(function(data, status, headers, config) 
     {
         //error
-        console.log("failed-----"+error);
+        console.log("请求失败，请重试");
         $scope.closeLogin();
     });
 
@@ -808,9 +809,10 @@ angular.module('starter.controllers', ['ionic'])
 			$http(req).success(function (data) {
 				$ionicLoading.hide();
 			$scope.showMsg("恭喜您兑换成功");
+				Userinfo.set(data.user);
 			}).error(function (error) {
 				$ionicLoading.hide();
-				alert("failed-----"+error);
+				alert("请求失败，请重试");
 			})
 			}
 		}else{
@@ -820,6 +822,154 @@ angular.module('starter.controllers', ['ionic'])
 		}
 	}
 })
+
+.controller('GuessYouLikeCtrl', function($scope, $stateParams, $state, $ionicModal, $ionicHistory, $ionicViewSwitcher,$http,$ionicLoading, $timeout, ApiEndpoint,ExchangeInfo, Userinfo) {
+    $scope.backGo = function() { 
+        $ionicViewSwitcher.nextDirection('back'); // 'forward', 'back', etc.
+        $ionicHistory.goBack();
+    };
+	
+	// 登陆
+  $ionicModal.fromTemplateUrl('templates/login.html', {
+    scope: $scope
+  }).then(function(modal) {
+    $scope.modalLogin = modal;
+    $scope.loginData = {};
+  });
+
+  // Triggered in the login modal to close it
+  $scope.closeLogin = function() {
+    $scope.modalLogin.hide();
+    $scope.loginData = {};
+  };
+
+
+  $scope.showMsg = function(txt) {
+    $ionicLoading.show({
+      template: txt
+    });
+    $timeout(function() {
+      // $scope.popover.hide();
+      $ionicLoading.hide();
+    }, 1400);
+  };          
+            
+  $scope.doLogin = function() {
+    if (!$scope.loginData.username) {
+      $scope.showMsg('用户名不能为空');
+      return false;
+    };
+    if (!$scope.loginData.password) {
+      $scope.showMsg('密码不能为空');
+      return false;
+    };
+    $ionicLoading.show({
+      template: "正在登录..."
+    });
+
+    var dataObj = {username: $scope.loginData.username,
+      password: md5($scope.loginData.password)};
+
+    Object.toparams = function ObjecttoParams(obj) 
+    {
+      var p = [];
+      for (var key in obj) 
+      {
+        p.push(key + '=' + encodeURIComponent(obj[key]));
+      }
+      return p.join('&');
+    };
+
+    var req = 
+    {
+        method: 'POST',
+        url: ApiEndpoint.url + '/user_manage/login/',
+        data: Object.toparams(dataObj),
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+    }
+
+    $http(req).
+    success(function(data, status, headers, config) 
+    {
+        //success
+        $ionicLoading.hide();
+        console.log(data.msg);     
+        if(data.code == '0'){
+          $scope.modalLogin.hide();  
+          Userinfo.set(data.user);
+          $scope.userInfo = data.user;
+          $scope.flag = 1;
+        }else {
+          $scope.showMsg(data.msg);
+        }       
+
+    }).
+    error(function(data, status, headers, config) 
+    {
+        //error
+        console.log("请求失败，请重试");
+        $scope.closeLogin();
+    });
+
+  };
+	
+	  
+  $scope.showMsg = function(txt) {
+    $ionicLoading.show({
+      template: txt
+    });
+    $timeout(function() {
+      // $scope.popover.hide();
+      $ionicLoading.hide();
+    }, 1400);
+  }; 
+	
+	$scope.callExchange = function(){
+		// Setup the loader
+		$ionicLoading.show({
+			content: 'Loading',
+			animation: 'fade-in',
+			showBackdrop: true,
+			maxWidth: 200,
+			showDelay: 0
+		});
+  
+		var userInfo = Userinfo.get();
+		if(userInfo.name != undefined){
+			var dataObj = {username: userInfo.name,
+				goodsid: $scope.exchangeInfo.goodsid};
+
+			Object.toparams = function ObjecttoParams(obj){
+				var p = [];
+				for (var key in obj) {
+					p.push(key + '=' + encodeURIComponent(obj[key]));
+				}
+				return p.join('&');
+			};
+
+			var req = 
+			{
+				method: 'POST',
+				url: ApiEndpoint.url + '/user_manage/credit_exchange/',
+				data: Object.toparams(dataObj),
+				headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+			}
+
+			$http(req).success(function (data) {
+				$ionicLoading.hide();
+				$scope.showMsg("恭喜您兑换成功");
+				Userinfo.set(data.user);
+			}).error(function (error) {
+				$ionicLoading.hide();
+				alert("请求失败，请重试");
+			})
+		}else{
+			$ionicLoading.hide();
+			$scope.modalLogin.show();
+		}
+	}
+})
+
 
 .controller('AccountCtrl', function($ionicViewSwitcher, $state, $scope, $ionicModal, $http, ApiEndpoint, $ionicLoading, $ionicPopover, $timeout, Userinfo) {
 	var userInfo = Userinfo.get();
@@ -884,7 +1034,7 @@ angular.module('starter.controllers', ['ionic'])
       {
           //error
           $scope.$broadcast("scroll.refreshComplete");
-          console.log("failed-----"+error);
+          console.log("请求失败，请重试");
       });
     }else{
       $scope.$broadcast("scroll.refreshComplete");
@@ -944,7 +1094,7 @@ angular.module('starter.controllers', ['ionic'])
     error(function(data, status, headers, config) 
     {
         //error
-        console.log("failed-----"+error);
+        console.log("请求失败，请重试");
         $scope.closeLogin();
     });
 
@@ -972,6 +1122,9 @@ angular.module('starter.controllers', ['ionic'])
         case 2:
           $state.go('exchange-record');
           break;
+		case 3:
+          $state.go('guess-you-like');
+          break;  
         default:
           break;
       }
