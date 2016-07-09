@@ -20,12 +20,6 @@
     <feature name="Keyboard">
         <param name="ios-package" onload="true" value="IonicKeyboard" />
     </feature>
-    <feature name="MyPluginName">
-        <param name="ios-package" value="EOPlugin" />
-    </feature>
-    <feature name="ELifePlugin">
-        <param name="ios-package" value="EOPlugin" />
-    </feature>
     <name>ELife</name>
     <description>
         An Ionic Framework and Cordova project.

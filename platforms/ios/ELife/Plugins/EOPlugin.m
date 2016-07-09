@@ -115,14 +115,17 @@
 
 - (void)share:(CDVInvokedUrlCommand*)command;
 {
+    
+    
+    
     //1、创建分享参数（必要）
     NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
     
     NSArray* imageArray = @[[UIImage imageNamed:@"shareImg.png"]];
-    [shareParams SSDKSetupShareParamsByText:@"分享内容"
+    [shareParams SSDKSetupShareParamsByText:@"点击帮我加油"
                                      images:imageArray
-                                        url:[NSURL URLWithString:@"http://www.mob.com"]
-                                      title:@"分享标题"
+                                        url:[NSURL URLWithString:[command.arguments lastObject]]
+                                      title:@"E友加油"
                                        type:SSDKContentTypeAuto];
     
     //2、分享
