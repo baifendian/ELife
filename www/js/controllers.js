@@ -226,7 +226,7 @@ angular.module('starter.controllers', ['ionic'])
             
             $http(req).success(function (data) {
                                $ionicLoading.hide();
-                               alert('123');
+                               
                                console.log(data)
                                if(data.code == 503)
                                {
