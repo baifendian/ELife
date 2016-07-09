@@ -94,6 +94,16 @@ angular.module('starter.controllers', ['ionic'])
 
 .controller('TurntableCtrl', function($scope, $state, $stateParams, $ionicModal, ApiEndpoint,$ionicLoading, $timeout,$ionicViewSwitcher,$http, $ionicHistory,Userinfo) {
 
+            $scope.showMsg = function(txt) {
+            $ionicLoading.show({
+                               template: txt
+                               });
+            $timeout(function() {
+                     // $scope.popover.hide();
+                     $ionicLoading.hide();
+                     }, 1400);
+            };
+            
             $scope.Turntable_click = function(){
             //转盘
             $scope.callTurntable();
@@ -185,7 +195,7 @@ angular.module('starter.controllers', ['ionic'])
 			
             $scope.callTurntable = function(){
             // Setup the loader
-            alert('2134');
+           
             $ionicLoading.show({
                                content: 'Loading',
                                animation: 'fade-in',
@@ -216,9 +226,14 @@ angular.module('starter.controllers', ['ionic'])
             
             $http(req).success(function (data) {
                                $ionicLoading.hide();
-                               
+                               alert('123');
                                console.log(data)
-                               clickFunc(0);
+                               if(data.code == 503)
+                               {
+                                $scope.showMsg('您的信币不够啦！')
+                               }else{
+                                clickFunc(3);
+                               }
                                
                                }).error(function (error) {
                                         $ionicLoading.hide();

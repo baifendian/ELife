@@ -22,7 +22,7 @@ var rotateFunc = function(awards,angle,text){  //awards:奖项，angle:奖项对
                             {
                                 falseiv()
                             }else{
-                                showdiv()
+                                showdiv(awards)
                             }
                             flag = true;
                             }
@@ -34,38 +34,40 @@ var flag = true;
 var clickFunc = function(data){
     if(flag){
         flag = false;
-//    var time = [0,1];
-//    time = time[Math.floor(Math.random()*time.length)];
-//    if(time==0){
-//        // timeOut(); //网络超时
-//        var angle = [67,112,202,292,337];
-//        angle = angle[Math.floor(Math.random()*angle.length)]
-//        rotateFunc(0,angle,'很遗憾，这次您未抽中奖')
-//    }
-//    if(time==1){
-       // var data = [1,2,3,0]; //返回的数组
-        //data = data[Math.floor(Math.random()*data.length)];
         if(data==1){
-            rotateFunc(1,157,'一等奖')
+            rotateFunc(1,360,'一等奖')
         }
         if(data==2){
-            rotateFunc(2,247,'二等奖')
+            rotateFunc(2,60,'二等奖')
         }
         if(data==3){
-            rotateFunc(3,22,'三等奖')
+            var angle = [120,240];
+            angle = angle[Math.floor(Math.random()*angle.length)]
+            rotateFunc(3,angle,'三等奖')
         }
         if(data==0){
-            var angle = [67,112,202,292,337];
+            var angle = [180,300];
             angle = angle[Math.floor(Math.random()*angle.length)]
             rotateFunc(0,angle,'未中奖')
         }
-//    }
     }
 }
 
-function showdiv() {
-    document.getElementById("bg").style.display ="block";
-    document.getElementById("show").style.display ="block";
+function showdiv(awards) {
+    if(awards == '1')
+    {
+        document.getElementById("bg").style.display ="block";
+        document.getElementById("showFist").style.display ="block";
+    }else if(awards == '2')
+    {
+        document.getElementById("bg").style.display ="block";
+        document.getElementById("showSecond").style.display ="block";
+    }else if(awards == '3')
+    {
+        document.getElementById("bg").style.display ="block";
+        document.getElementById("showThird").style.display ="block";
+    }
+    
 }
 function falseiv() {
     document.getElementById("bg").style.display ="block";
@@ -74,6 +76,19 @@ function falseiv() {
 function hidediv() {
     document.getElementById("bg").style.display ='none';
     document.getElementById("show").style.display ='none';
+}
+
+function hidediv1() {
+    document.getElementById("bg").style.display ='none';
+    document.getElementById("showFist").style.display ='none';
+}
+function hidediv2() {
+    document.getElementById("bg").style.display ='none';
+    document.getElementById("showSecond").style.display ='none';
+}
+function hidediv3() {
+    document.getElementById("bg").style.display ='none';
+    document.getElementById("showThird").style.display ='none';
 }
 function hidedloseiv() {
     document.getElementById("bg").style.display ='none';
