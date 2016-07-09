@@ -185,6 +185,7 @@ angular.module('starter.controllers', ['ionic'])
 			
             $scope.callTurntable = function(){
             // Setup the loader
+            alert('2134');
             $ionicLoading.show({
                                content: 'Loading',
                                animation: 'fade-in',
@@ -282,6 +283,7 @@ angular.module('starter.controllers', ['ionic'])
                     console.log(data.msg);
                     $scope.flag = 1;
                     $scope.showMsg('签到成功');
+                    $rootScope.flagSign = 'flagDone'
                     
                     }).
             error(function(data, status, headers, config)
@@ -296,7 +298,6 @@ angular.module('starter.controllers', ['ionic'])
             
             $scope.checkin = function checkInFunc(){
             
-            alert($rootScope.flagSign)
 
             if($rootScope.flagSign != 'flagDone'){
                 if(isIOS){
@@ -309,7 +310,6 @@ angular.module('starter.controllers', ['ionic'])
             
             }else
             {
-            alert('qwet');
                 $scope.showMsg('您今天签过啦！')
             }
             

@@ -10,7 +10,7 @@
 	</style>
         <div class="exchange_detail">
 			<div class="exchange_detail_img">
-				<img ng-src="{{exchangeInfo.small_image}}">
+				<img ng-src="{{exchangeInfo.large_image}}">
 			</div>
 			<div class="detail">
 				<p><em>{{exchangeInfo.name}}</em></p>
@@ -23,8 +23,8 @@
 					<div class="detail_canjia"><p><en>您还没有参加兑换哦~ </en></p></div>	
 				</div>
 				<div class="exchange_eadd" ng-click="e_add()">
-				<img src="img/e_add.png">
-			</div>
+					<img src="img/e_add.png">
+				</div>
 			</div>
 			
 			<div class="jianju">
@@ -36,9 +36,9 @@
 			</dt1>
 			<div class="detail_activity">
 				<div class="act_jp"><p><em>活动商品：</em><en>{{exchangeInfo.name}}</en><en> 1个</en></p></div>
-				<div class="act_time"><p><em>活动时间：</em><en>{{exchangeInfo.time_range}}</en></p></div>
-				<div class="open_time"><p><em>开奖时间：</em><en>2016年7月11日</en></p></div>
-				<div class="act_detail"><p><en>2016年7月11日XXXXXXSSSSSSSS</en></p></div>
+				<div class="act_time"><p><em>活动时间：</em><en>{{exchangeInfo.lottert_time}}</en></p></div>
+				<div class="open_time"><p><em>开奖时间：</em><en>{{exchangeInfo.probability}}</en></p></div>
+				<div class="act_detail"><p><en></en></p></div>
 			</div>
 			<div class="btn_dh">
 			<p ng-click="exchange_click()"><btn1>立即兑换</btn1></p>
