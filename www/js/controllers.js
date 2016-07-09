@@ -232,7 +232,7 @@ angular.module('starter.controllers', ['ionic'])
                                {
                                 $scope.showMsg('您的信币不够啦！')
                                }else{
-                                clickFunc(3);
+                                clickFunc(data.prizelevel);
                                }
                                
                                }).error(function (error) {
