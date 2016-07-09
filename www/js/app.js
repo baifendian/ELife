@@ -115,6 +115,7 @@ cache:'false',
                controller: 'SignInCtrl'
 })
 .state('about', {
+       cache:'false',
  url: '/about',
  templateUrl: 'templates/about.html',
 })

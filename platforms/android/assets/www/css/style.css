@@ -613,7 +613,7 @@ dt1 h3{border-left:0.4rem solid #F6AD2D;
     background: url(../img/ly-plate.png);
     position: absolute;
     top: 230px;
-    left: 9.5%;
+    left: 10%;
     margin-top: 0%;
 }
 .ly-plate div.lottery-star{
@@ -621,7 +621,7 @@ dt1 h3{border-left:0.4rem solid #F6AD2D;
     height:50%;
     position:absolute;
     top:305px;
-    left:105px;
+    left:110px;
     /*text-indent:-999em;
      overflow:hidden;
      background:url(rotate-static.png);
@@ -641,7 +641,7 @@ dt1 h3{border-left:0.4rem solid #F6AD2D;
 #losePrize{display: none; position: absolute; top: 25%; left: 30%; width: 150px; height: 250px; padding: 0px; border: 0px solid #E8E9F7; background:url(../img/false.png); z-index:1003; overflow: auto;}
 #closeImg{ position: absolute; top: 220px; left: 35px; width: 80px; height: 30px;z-index:1002; overflow: auto;}
 
-.checkIn{ position: absolute;
+#checkIn{
     width: 100%;
     height: 100%;
     position: absolute;
@@ -649,20 +649,21 @@ dt1 h3{border-left:0.4rem solid #F6AD2D;
     left: 0;
     margin-top: 0%;
 }
-.checkIn #checkinBackground{ position: absolute;
-    top:150px; left: 50px;
-    width: 50%;
-    height: 50%;
-    overflow: auto;
-}
-.checkinBase{ position: absolute;
-    width: 100%;
-    height: 100%;
+#checkinBase{
     position: absolute;
-    top: 40%;
-    left: 25%;
-    margin-top: 55%;
-<<<<<<< HEAD
+    width: 80%;
+    height: 60%;
+    top: 20%;
+    left: 10%;
+    margin-top: 20%;
+}
+#successSign{
+    position: absolute;
+    width: 30%;
+    height: 18%;
+    top: 2%;
+    left: 35%;
+    margin-top: 0px;
 }
 #about{
     position: absolute;
@@ -670,6 +671,15 @@ dt1 h3{border-left:0.4rem solid #F6AD2D;
     width: 100%;
     height: 100%;
     overflow: auto;
-=======
->>>>>>> 0cbcf54a048b166e98c5939036308a494b78651e
+}
+#textSign {
+    position: absolute;
+    top:38%; left: 0px;
+    width: 100%;
+    height: 100%;
+    display:none ;
+    text-align:center;
+    font-size:16px;
+    color:red;
+    margin-top:38%
 }
