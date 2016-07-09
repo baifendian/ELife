@@ -122,6 +122,7 @@ cache:'false',
 .state('exchange-record', {
  url: '/exchange-record',
  templateUrl: 'templates/exchange-record.html',
+ controller: 'ExchangeRecordCtrl'
 })
 .state('guess-you-like', {
  url: '/guess-you-like',

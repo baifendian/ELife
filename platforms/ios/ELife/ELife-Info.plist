@@ -56,14 +56,49 @@
     <string>${PRODUCT_NAME}</string>
     <key>CFBundlePackageType</key>
     <string>APPL</string>
-    <key>CFBundleSignature</key>
-    <string>????</string>
-    <key>CFBundleVersion</key>
-    <string>0.0.1</string>
     <key>CFBundleShortVersionString</key>
     <string>0.0.1</string>
+    <key>CFBundleSignature</key>
+    <string>????</string>
+    <key>CFBundleURLTypes</key>
+    <array>
+      <dict>
+        <key>CFBundleTypeRole</key>
+        <string>Editor</string>
+        <key>CFBundleURLSchemes</key>
+        <array>
+          <string>vk5312801</string>
+          <string>yx0d9a9f9088ea44d78680f3274da1765f</string>
+          <string>pin4797078908495202393</string>
+          <string>kakao48d3f524e4a636b08d81b3ceb50f1003</string>
+          <string>pdk4797078908495202393</string>
+          <string>tb2QUXqO9fcgGdtGG1FcvML6ZunIQzAEL8xY6hIaxdJnDti2DYwM</string>
+          <string>com.mob.demoShareSDK</string>
+          <string>rm226427com.mob.demoShareSDK</string>
+          <string>pocketapp1234</string>
+          <string>QQ05FB8B52</string>
+          <string>wx4868b35061f87885</string>
+          <string>tencent100371282</string>
+          <string>fb107704292745179</string>
+          <string>wb568898243</string>
+        </array>
+      </dict>
+    </array>
+    <key>CFBundleVersion</key>
+    <string>0.0.1</string>
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+      <string>mqq</string>
+      <string>mqqapi</string>
+      <string>weixin</string>
+    </array>
     <key>LSRequiresIPhoneOS</key>
     <true/>
+    <key>NSAppTransportSecurity</key>
+    <dict>
+      <key>NSAllowsArbitraryLoads</key>
+      <true/>
+    </dict>
     <key>NSMainNibFile</key>
     <string/>
     <key>NSMainNibFile~ipad</key>
@@ -171,10 +206,5 @@
         <string>{768, 1024}</string>
       </dict>
     </array>
-    <key>NSAppTransportSecurity</key>
-    <dict>
-      <key>NSAllowsArbitraryLoads</key>
-      <true/>
-    </dict>
   </dict>
 </plist>
