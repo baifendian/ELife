@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('starter.controllers', ['ionic'])
 
 .constant('ApiEndpoint', {
   url: 'http://192.168.188.176:8000'
@@ -229,35 +229,29 @@ angular.module('starter.controllers', [])
             }
             }
 })
-.controller('SignInCtrl', function($scope, $state, $ionicViewSwitcher, $ionicHistory,$http,$ionicLoading, ApiEndpoint, Userinfo) {
+.controller('SignInCtrl', function($scope, $state, $ionicViewSwitcher, $ionicHistory,$http,$ionicLoading, ApiEndpoint, Userinfo,$timeout,$rootScope) {
 
-            $scope.click = checkin();
+            $scope.showMsg = function(txt) {
+            $ionicLoading.show({
+                               template: txt
+                               });
+            $timeout(function() {
+                     // $scope.popover.hide();
+                     $ionicLoading.hide();
+                     }, 1400);
+            };
             
-           var checkin = function checkInFunc(){
-            alert('chekin');
-//            Cordova.exec(successFunction, failFunction, "MyPluginName", "myMethod", ["回调方法"]);
-            }
+            var isIOS = ionic.Platform.isIOS();
+            var successss = function successFunction(){
             
-           var successss = function successFunction(){
-            showuu()
             SignIn_click()
             
             }
             var faillll =  function failFunction(){
             
             }
-            
-            var showuu =  function showSign(){
-            document.getElementById("textSign").style.display ="block";
-            }
-            
-
-            var SignIn_click = function(){
-                //抽奖
-                $scope.callSignIn();
-            }
-            
             $scope.callSignIn = function(){
+            
             
             var userInfo = Userinfo.get();
             
@@ -282,14 +276,15 @@ angular.module('starter.controllers', [])
             }
             
             $http(req).
-            success(function(data, status, headers, config) 
+            success(function(data, status, headers, config)
                     {
                     //success
                     console.log(data.msg);
-                    alert('qiandao')
+                    $scope.flag = 1;
+                    $scope.showMsg('签到成功');
                     
                     }).
-            error(function(data, status, headers, config) 
+            error(function(data, status, headers, config)
                   {
                   //error
                   console.log("failed-----"+error);
@@ -298,6 +293,35 @@ angular.module('starter.controllers', [])
             
             };
             
+            
+            $scope.checkin = function checkInFunc(){
+            
+            alert($rootScope.flagSign)
+
+            if($rootScope.flagSign != 'flagDone'){
+                if(isIOS){
+                Cordova.exec(successss, faillll, "MyPluginName", "myMethod", ["回调方法"]);
+                }else
+                {
+            
+                SignIn_click()
+                }
+            
+            }else
+            {
+            alert('qwet');
+                $scope.showMsg('您今天签过啦！')
+            }
+            
+            }
+            var showuu =  function showSign(){
+            document.getElementById("textSign").style.display ="block";
+            }
+            
+            var SignIn_click = function(){
+            //签到
+            $scope.callSignIn();
+            }
             
             
 })
