@@ -101,6 +101,7 @@ function hidedloseiv() {
 
 //分享
 function onShare(eventData){
+     alert(eventData);
     Cordova.exec( null, null ,  "ELifePlugin" ,  "share" , [eventData]);
 }
 
