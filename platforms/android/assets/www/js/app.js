@@ -120,6 +120,7 @@ cache:'false',
  templateUrl: 'templates/about.html',
 })
 .state('exchange-record', {
+	 cache:'false',
  url: '/exchange-record',
  templateUrl: 'templates/exchange-record.html',
  controller: 'ExchangeRecordCtrl'

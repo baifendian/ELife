@@ -47,7 +47,7 @@ angular.module('starter.controllers', [])
 			$scope.setData();
 		}).error(function (error) {
 			$scope.$broadcast("scroll.refreshComplete");
-			alert("failed-----"+error);
+			alert("请求失败，请重试");
 		})
 	};
 
@@ -76,7 +76,7 @@ angular.module('starter.controllers', [])
     }).error(function (error) {
 		$ionicLoading.hide();
         //业务处理
-        alert("failed-----"+error);
+        alert("请求失败，请重试");
     })
 	
 	$scope.setData = function(){
@@ -177,7 +177,7 @@ angular.module('starter.controllers', [])
     error(function(data, status, headers, config) 
     {
         //error
-        console.log("failed-----"+error);
+        console.log("请求失败，请重试");
         $scope.closeLogin();
     });
 
@@ -221,7 +221,7 @@ angular.module('starter.controllers', [])
                                
                                }).error(function (error) {
                                         $ionicLoading.hide();
-                                        alert("failed-----"+error);
+                                        alert("请求失败，请重试");
                                         })
             }else{
             $ionicLoading.hide();
@@ -272,7 +272,7 @@ angular.module('starter.controllers', [])
 				$scope.itmes = data.recordlist;
 			}).error(function (error) {
 				$ionicLoading.hide();
-				alert("failed-----"+error);
+				alert("请求失败，请重试");
 			})	
             
 })
@@ -292,7 +292,7 @@ angular.module('starter.controllers', [])
 			$scope.setData();
 		}).error(function (error) {
 			$scope.$broadcast("scroll.refreshComplete");
-			alert("failed-----"+error);
+			alert("请求失败，请重试");
 		})
 	};
 	
@@ -316,7 +316,7 @@ angular.module('starter.controllers', [])
 		
     }).error(function (error) {
 		$ionicLoading.hide();
-        alert("failed-----"+error);
+        alert("请求失败，请重试");
     })
 	
 	$scope.setData = function(){
@@ -364,7 +364,7 @@ angular.module('starter.controllers', [])
 			$scope.setData();	
 		}).error(function (error) {
 			$scope.$broadcast("scroll.refreshComplete");
-			alert("failed-----"+error);
+			alert("请求失败，请重试");
 		})
 	};
 
@@ -387,7 +387,7 @@ angular.module('starter.controllers', [])
 		$scope.setData();	
     }).error(function (error) {
 		$ionicLoading.hide();
-        alert("failed-----"+error);
+        alert("请求失败，请重试");
     })
 	
 	$scope.setData = function(){
@@ -503,7 +503,7 @@ angular.module('starter.controllers', [])
     error(function(data, status, headers, config) 
     {
         //error
-        console.log("failed-----"+error);
+        console.log("请求失败，请重试");
         $scope.closeLogin();
     });
 
@@ -557,9 +557,10 @@ angular.module('starter.controllers', [])
 				$ionicLoading.hide();
 				
 				$scope.showMsg("恭喜您中奖了");
+				Userinfo.set(data.user);
 			}).error(function (error) {
 				$ionicLoading.hide();
-				alert("failed-----"+error);
+				alert("请求失败，请重试");
 			})
 			}
 		}else{
@@ -665,7 +666,7 @@ angular.module('starter.controllers', [])
     error(function(data, status, headers, config) 
     {
         //error
-        console.log("failed-----"+error);
+        console.log("请求失败，请重试");
         $scope.closeLogin();
     });
 
@@ -719,9 +720,10 @@ angular.module('starter.controllers', [])
 			$http(req).success(function (data) {
 				$ionicLoading.hide();
 			$scope.showMsg("恭喜您兑换成功");
+				Userinfo.set(data.user);
 			}).error(function (error) {
 				$ionicLoading.hide();
-				alert("failed-----"+error);
+				alert("请求失败，请重试");
 			})
 			}
 		}else{
@@ -795,7 +797,7 @@ angular.module('starter.controllers', [])
       {
           //error
           $scope.$broadcast("scroll.refreshComplete");
-          console.log("failed-----"+error);
+          console.log("请求失败，请重试");
       });
     }else{
       $scope.$broadcast("scroll.refreshComplete");
@@ -855,7 +857,7 @@ angular.module('starter.controllers', [])
     error(function(data, status, headers, config) 
     {
         //error
-        console.log("failed-----"+error);
+        console.log("请求失败，请重试");
         $scope.closeLogin();
     });
 

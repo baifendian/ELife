@@ -10,7 +10,7 @@
 	</style>
         <div class="exchange_detail">
 			<div class="exchange_detail_img">
-				<img ng-src="{{exchangeInfo.small_image}}">
+				<img ng-src="{{exchangeInfo.large_image}}">
 			</div>
 			<div class="detail">
 				<p><em>{{exchangeInfo.name}}</em></p>
@@ -36,8 +36,8 @@
 			</dt1>
 			<div class="detail_activity">
 				<div class="act_jp"><p><em>活动商品：</em><en>{{exchangeInfo.name}}</en><en> 1个</en></p></div>
-				<div class="act_time"><p><em>活动时间：</em><en>{{exchangeInfo.time_range}}</en></p></div>
-				<div class="open_time"><p><em>开奖时间：</em><en>2016年7月11日</en></p></div>
+				<div class="act_time"><p><em>活动时间：</em><en>{{exchangeInfo.lottert_time[0][0]}}</en></p></div>
+				<div class="open_time"><p><em>开奖时间：</em><en>{{exchangeInfo.probability}}</en></p></div>
 				<div class="act_detail"><p><en>2016年7月11日XXXXXXSSSSSSSS</en></p></div>
 			</div>
 			<div class="btn_dh">
