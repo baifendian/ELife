@@ -1,7 +1,7 @@
 angular.module('starter.controllers', [])
 
 .constant('ApiEndpoint', {
-  url: 'http://172.24.3.175:8000'
+  url: 'http://192.168.188.176:8000'
 })
 
 .controller('HomeCtrl', function($scope, $state, $ionicSlideBoxDelegate,$http,$ionicLoading, ApiEndpoint,LotteryInfo,ExchangeInfo) {
