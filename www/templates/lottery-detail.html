@@ -19,7 +19,7 @@
 	</style>
         <div class="lottery_detail">
 			<div class="lottery_detail_img">
-				<img ng-src="{{lotteryInfo.large_image}}">
+				<img ng-src="{{lotteryInfo.raw_image}}">
 			</div>
 			<div class="detail">
 				<p><em>{{lotteryInfo.name}}</em></p>
@@ -40,9 +40,9 @@
 			</h3>
 			</dt>
 			<div class="detail_activity">
-				<div class="act_jp"><p><em>活动奖品：</em><en>{{lotteryInfo.name}}</en><en> 1个</en></p></div>
+				<div class="act_jp"><p><em>活动奖品：</em><en>{{lotteryInfo.name}}</en><en> </en></p></div>
 				<div class="act_time"><p><em>活动时间：</em><en>{{lotteryInfo.time_range}}</en></p></div>
-				<div class="open_time"><p><em>开奖时间：</em><en>{{lotteryInfo.lottert_time}}</en></p></div>
+				<div class="open_time"><p><em>开奖时间：</em><en>{{lotteryInfo.probability}}</en></p></div>
 				<div class="act_detail"><p><en></en></p></div>
 			</div>
 			<div class="btn_cj">
