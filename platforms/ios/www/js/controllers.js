@@ -876,6 +876,10 @@ angular.module('starter.controllers', ['ionic'])
         $ionicHistory.goBack();
     };
 	
+	$scope.dh_click = function(exchangeInfo) {
+		ExchangeInfo.setExchangeInfo(exchangeInfo); 
+	};
+	
 	// 登陆
   $ionicModal.fromTemplateUrl('templates/login.html', {
     scope: $scope
