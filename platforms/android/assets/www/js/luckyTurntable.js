@@ -90,8 +90,13 @@ function onShare(eventData){
 	Cordova.exec( successFunction, failFunction ,  "ELifePlugin" ,  "share" , [eventData]);
 }
 function successFunction(){
-    
+    showSign()
 }
 function failFunction(){
     
 }
+
+function showSign(){
+    document.getElementById("textSign").style.display ="block";
+}
+

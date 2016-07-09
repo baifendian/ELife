@@ -115,12 +115,14 @@ cache:'false',
                controller: 'SignInCtrl'
 })
 .state('about', {
+       cache:'false',
  url: '/about',
  templateUrl: 'templates/about.html',
 })
 .state('exchange-record', {
  url: '/exchange-record',
  templateUrl: 'templates/exchange-record.html',
+ controller: 'ExchangeRecordCtrl'
 })
 .state('guess-you-like', {
  url: '/guess-you-like',

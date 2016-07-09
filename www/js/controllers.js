@@ -216,6 +216,22 @@ angular.module('starter.controllers', [])
             
 })
    
+.controller('ExchangeRecordCtrl', function($scope, $state, $ionicViewSwitcher, $ionicHistory,$http,$ionicLoading, ApiEndpoint, Userinfo) {
+
+    
+
+    $scope.itmes = [
+    { id: 0 },
+    { id: 1 },
+    { id: 2 },
+    { id: 3 },
+    { id: 4 },
+    { id: 5 },
+    { id: 6 },
+    { id: 7 } ];
+            
+})
+
 .controller('ExchangeCtrl', function($scope, ApiEndpoint,$http,$ionicLoading, ApiEndpoint,ExchangeInfo) {
 
   
@@ -671,6 +687,41 @@ angular.module('starter.controllers', [])
       $ionicLoading.hide();
     }, 1400);
   };          
+
+  $scope.doRefresh = function() {
+    if ($scope.flag == 1) {
+      var req = 
+      {
+          method: 'POST',
+          url: ApiEndpoint.url + '/user_manage/get_user_information/',
+          data: "username="+$scope.userInfo.name ,
+          headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+      }
+
+      $http(req).
+      success(function(data, status, headers, config) 
+      {
+          //success
+          $scope.$broadcast("scroll.refreshComplete");
+          console.log(data.msg);     
+          if(data.code == '0'){
+            Userinfo.set(data.user);
+            $scope.userInfo = data.user;
+          }else {
+            $scope.showMsg(data.msg);
+          }       
+
+      }).
+      error(function(data, status, headers, config) 
+      {
+          //error
+          $scope.$broadcast("scroll.refreshComplete");
+          console.log("failed-----"+error);
+      });
+    }else{
+      $scope.$broadcast("scroll.refreshComplete");
+    }
+  };
             
   $scope.doLogin = function() {
     if (!$scope.loginData.username) {
