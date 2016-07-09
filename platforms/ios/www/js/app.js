@@ -120,13 +120,16 @@ cache:'false',
  templateUrl: 'templates/about.html',
 })
 .state('exchange-record', {
+	 cache:'false',
  url: '/exchange-record',
  templateUrl: 'templates/exchange-record.html',
  controller: 'ExchangeRecordCtrl'
 })
 .state('guess-you-like', {
+	cache:'false',
  url: '/guess-you-like',
  templateUrl: 'templates/guess-you-like.html',
+ controller: 'GuessYouLikeCtrl'
 })
 
 

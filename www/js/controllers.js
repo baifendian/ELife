@@ -94,6 +94,16 @@ angular.module('starter.controllers', ['ionic'])
 
 .controller('TurntableCtrl', function($scope, $state, $stateParams, $ionicModal, ApiEndpoint,$ionicLoading, $timeout,$ionicViewSwitcher,$http, $ionicHistory,Userinfo) {
 
+            $scope.showMsg = function(txt) {
+            $ionicLoading.show({
+                               template: txt
+                               });
+            $timeout(function() {
+                     // $scope.popover.hide();
+                     $ionicLoading.hide();
+                     }, 1400);
+            };
+            
             $scope.Turntable_click = function(){
             //转盘
             $scope.callTurntable();
@@ -185,6 +195,7 @@ angular.module('starter.controllers', ['ionic'])
 			
             $scope.callTurntable = function(){
             // Setup the loader
+           
             $ionicLoading.show({
                                content: 'Loading',
                                animation: 'fade-in',
@@ -215,9 +226,14 @@ angular.module('starter.controllers', ['ionic'])
             
             $http(req).success(function (data) {
                                $ionicLoading.hide();
-                               
+                               alert('123');
                                console.log(data)
-                               clickFunc(0);
+                               if(data.code == 503)
+                               {
+                                $scope.showMsg('您的信币不够啦！')
+                               }else{
+                                clickFunc(3);
+                               }
                                
                                }).error(function (error) {
                                         $ionicLoading.hide();
@@ -282,6 +298,7 @@ angular.module('starter.controllers', ['ionic'])
                     console.log(data.msg);
                     $scope.flag = 1;
                     $scope.showMsg('签到成功');
+                    $rootScope.flagSign = 'flagDone'
                     
                     }).
             error(function(data, status, headers, config)
@@ -296,7 +313,6 @@ angular.module('starter.controllers', ['ionic'])
             
             $scope.checkin = function checkInFunc(){
             
-            alert($rootScope.flagSign)
 
             if($rootScope.flagSign != 'flagDone'){
                 if(isIOS){
@@ -309,7 +325,6 @@ angular.module('starter.controllers', ['ionic'])
             
             }else
             {
-            alert('qwet');
                 $scope.showMsg('您今天签过啦！')
             }
             

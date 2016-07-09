@@ -669,10 +669,20 @@ dt1 h3{border-left:0.4rem solid #F6AD2D;
 }
 	  
 #bg{ display: none; position: absolute; top: 0%; left: 0%; width: 100%; height: 100%; background-color: black; z-index:1001; -moz-opacity: 0.7; opacity:.70; filter: alpha(opacity=70);}
-#show{display: none; position: absolute; top: 25%; left: 30%; width: 150px; height: 250px; padding: 0px; border: 0px solid #E8E9F7; background:url(../img/prize.png); z-index:1002; overflow: auto;}
-#losePrize{display: none; position: absolute; top: 25%; left: 30%; width: 150px; height: 250px; padding: 0px; border: 0px solid #E8E9F7; background:url(../img/false.png); z-index:1003; overflow: auto;}
-#closeImg{ position: absolute; top: 220px; left: 35px; width: 80px; height: 30px;z-index:1002; overflow: auto;}
+#show{display: none; position: absolute; top: 25%; left: 30%; width: 9.4rem; height: 15.6rem;  background:url(../img/prize.png); z-index:1002; }
 
+#showFist{display: none; position: absolute; top: 25%; left: 30%; width: 9.4rem; height: 15.6rem;  background:url(../img/fistPrize.png); z-index:1004; overflow: auto;}
+#showSecond{display: none; position: absolute; top: 25%; left: 30%; width: 9.4rem; height: 15.6rem;  background:url(../img/secondPrize.png); z-index:1002; overflow: auto;}
+#showThird{display: none; position: absolute; top: 25%; left: 30%; width: 9.4rem; height: 15.6rem;  background:url(../img/thirdPrize.png); z-index:1005; overflow: auto;}
+
+
+
+#losePrize{display: none; position: absolute; top: 25%; left: 30%;  width: 9.4rem; height: 15.6rem; padding: 0px; border: 0px solid #E8E9F7; background:url(../img/false.png); z-index:1003; overflow: auto;}
+
+#closeImg{ position: absolute; top: 87%; left: 28%; width: 80px; height: 30px;z-index:1002; overflow: auto;}
+#closeImg1{ position: absolute; top: 87%; left: 24%; width: 80px; height: 30px;z-index:1002; overflow: auto;}
+#closeImg2{ position: absolute; top: 87%; left: 24%; width: 80px; height: 30px;z-index:1002; overflow: auto;}
+#closeImg3{ position: absolute; top: 87%; left: 24%; width: 80px; height: 30px;z-index:1002; overflow: auto;}
 #checkIn{
     width: 100%;
     height: 100%;
