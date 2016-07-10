@@ -4,7 +4,7 @@ angular.module('starter.controllers', ['ionic'])
   url: 'http://192.168.188.176:8000'
 })
 
-.controller('HomeCtrl', function($scope, $state, $ionicSlideBoxDelegate,$http,$ionicLoading, ApiEndpoint,LotteryInfo,ExchangeInfo) {
+.controller('HomeCtrl', function($scope, $state, $rootScope , $ionicSlideBoxDelegate,$http,$ionicLoading, ApiEndpoint,LotteryInfo,ExchangeInfo) {
  
   // Called to navigate to the main app
   $scope.startApp = function() {
@@ -31,8 +31,10 @@ angular.module('starter.controllers', ['ionic'])
   };
   
    $scope.dh_click = function(exchangeInfo) {
-	ExchangeInfo.setExchangeInfo(exchangeInfo); 
+	ExchangeInfo.setExchangeInfo(exchangeInfo);
+	$rootScope.exchange_detail = 0;
   };
+  
   
   $scope.doRefresh = function() {
 			var url = ApiEndpoint.url + "/user_manage/get_first_page/";
@@ -296,9 +298,22 @@ angular.module('starter.controllers', ['ionic'])
                     {
                     //success
                     console.log(data.msg);
+                    if(data.addcredits)
+                    {
+                    $scope.textChange = data.addcredits;
                     $scope.flag = 1;
                     $scope.showMsg('签到成功');
-                    $rootScope.flagSign = 'flagDone'
+                     $rootScope.flagSign = 'flagDone'
+                    }else if($rootScope.flagSign == 'flagDone')
+                    {
+                        $scope.showMsg('您今天签过啦！')
+                    }
+                    else
+                    {
+                    $scope.showMsg('签到失败');
+                    }
+                    
+                   
                     
                     }).
             error(function(data, status, headers, config)
@@ -380,10 +395,11 @@ angular.module('starter.controllers', ['ionic'])
             
 })
 
-.controller('ExchangeCtrl', function($scope, ApiEndpoint,$http,$ionicLoading, ApiEndpoint,ExchangeInfo) {
+.controller('ExchangeCtrl', function($scope, $rootScope , ApiEndpoint,$http,$ionicLoading, ApiEndpoint,ExchangeInfo) {
   
 	$scope.dh_click = function(exchangeInfo) {
 		ExchangeInfo.setExchangeInfo(exchangeInfo); 
+		$rootScope.exchange_detail = 1;
 	};
 	
 	$scope.doRefresh = function() {
@@ -685,10 +701,19 @@ angular.module('starter.controllers', ['ionic'])
   	
 })
 
-.controller('ExchangeDetailCtrl', function($scope, $stateParams, $state, $ionicModal, $ionicHistory, $ionicViewSwitcher,$http,$ionicLoading, $timeout, ApiEndpoint,ExchangeInfo, Userinfo) {
+.controller('ExchangeDetailCtrl', function($scope, $stateParams, $state, $rootScope, $ionicModal, $ionicHistory, $ionicViewSwitcher,$http,$ionicLoading, $timeout, ApiEndpoint,ExchangeInfo, Userinfo) {
     $scope.backGo = function() { 
-        $ionicViewSwitcher.nextDirection('back'); // 'forward', 'back', etc.
-        $ionicHistory.goBack();
+        
+	if($rootScope.exchange_detail == 0){
+	  $state.go('tab.home');
+	}else if($rootScope.exchange_detail == 1){
+	  $state.go('tab.exchange');
+	}else if($rootScope.exchange_detail == 2){
+	  $state.go('guess-you-like');
+	}else{
+	  $ionicViewSwitcher.nextDirection('back'); // 'forward', 'back', etc.
+      $ionicHistory.goBack();
+	}
     };
 	$scope.exchangeInfo = ExchangeInfo.getExchangeInfo();	
 	
@@ -870,13 +895,14 @@ angular.module('starter.controllers', ['ionic'])
 	}
 })
 
-.controller('GuessYouLikeCtrl', function($scope, $stateParams, $state, $ionicModal, $ionicHistory, $ionicViewSwitcher,$http,$ionicLoading, $timeout, ApiEndpoint,ExchangeInfo, Userinfo) {
+.controller('GuessYouLikeCtrl', function($scope, $stateParams, $state, $ionicModal, $ionicHistory , $rootScope , $ionicViewSwitcher,$http,$ionicLoading, $timeout, ApiEndpoint,ExchangeInfo, Userinfo) {
     $scope.backGo = function() { 
         $ionicViewSwitcher.nextDirection('back'); // 'forward', 'back', etc.
         $ionicHistory.goBack();
     };
 	
 	$scope.dh_click = function(exchangeInfo) {
+		$rootScope.exchange_detail = 2;
 		ExchangeInfo.setExchangeInfo(exchangeInfo); 
 	};
 	
