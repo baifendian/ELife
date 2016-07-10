@@ -11,8 +11,8 @@ var timeOut = function(){  //超时函数
                             });
 };
 var rotateFunc = function(awards,angle,text){  //awards:奖项，angle:奖项对应的角度
-    $('#lotteryBtn').stopRotate();
-    $("#lotteryBtn").rotate({
+    $('#lottery-star').stopRotate();
+    $("#lottery-star").rotate({
                             angle:0,
                             duration: 5000,
                             animateTo: angle+1440, //angle是图片上各奖项对应的角度，1440是我要让指针旋转4圈。所以最后的结束的角度就是这样子^^
@@ -34,6 +34,7 @@ var flag = true;
 var clickFunc = function(data){
     if(flag){
         flag = false;
+        
         if(data==1){
             rotateFunc(1,360,'一等奖')
         }
