@@ -296,6 +296,7 @@ angular.module('starter.controllers', ['ionic'])
                     {
                     //success
                     console.log(data.msg);
+                    $scope.textChange = data.addcredits;
                     $scope.flag = 1;
                     $scope.showMsg('签到成功');
                     $rootScope.flagSign = 'flagDone'
