@@ -640,7 +640,7 @@ dt1 h3{border-left:0.4rem solid #F6AD2D;
 }
 #rotate-bg{
     position: absolute;
-    width: 78%;
+    width: 80%;
     height: 50%;
     top: 40%;
     left: 10%;
@@ -648,9 +648,9 @@ dt1 h3{border-left:0.4rem solid #F6AD2D;
 }
 #lottery-star{
     position: absolute;
-    width: 36%;
+    width: 38%;
     height: 23%;
-    top: 42%;
+    top: 41.9%;
     left: 31.3%;
     margin-top: 20%;
 }
