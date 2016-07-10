@@ -298,9 +298,22 @@ angular.module('starter.controllers', ['ionic'])
                     {
                     //success
                     console.log(data.msg);
+                    if(data.addcredits)
+                    {
+                    $scope.textChange = data.addcredits;
                     $scope.flag = 1;
                     $scope.showMsg('签到成功');
-                    $rootScope.flagSign = 'flagDone'
+                     $rootScope.flagSign = 'flagDone'
+                    }else if($rootScope.flagSign == 'flagDone')
+                    {
+                        $scope.showMsg('您今天签过啦！')
+                    }
+                    else
+                    {
+                    $scope.showMsg('签到失败');
+                    }
+                    
+                   
                     
                     }).
             error(function(data, status, headers, config)
